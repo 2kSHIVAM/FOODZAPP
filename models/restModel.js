@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
-
+const slugify = require('slugify');
 const restSchema= new mongoose.Schema({
     name:{
         type:String,
-        required:[true,'Arestaurant must have a name!']
+        required:[true,'A restaurant must have a name!']
     },
     slug:{
         type:String
@@ -44,14 +44,16 @@ const restSchema= new mongoose.Schema({
         type:[Number]
     },
     location:{
-        type:{
-            type: String,
-            default:'Point',
-            enum:['Point']
+
+        coordinates:{
+            type:[Number]
         },
-        coordinates:[Number],
-        address: String,
-        description: String
+        address: {
+            type: String
+        },
+        description: {
+            type: String
+        }
     },
     ratingsAverage:{
         type:Number
@@ -62,9 +64,45 @@ const restSchema= new mongoose.Schema({
         default: true,
         select: false
     },
-    menu_category:[{type:String, 
-        meals:[{type:String}]
-        //need to add the price and discount as well as the image of thr product
+    // menu_name:[{type:String,
+    //     meals:[{
+    //         meal_name:{
+    //             type:String,
+    //             required:[true,"A meal must have a name"]
+    //         },
+    //         price:{
+    //             type:Number,
+    //             required:[true,"A meal must have a price"]
+    //         },
+    //         dicount:{
+    //             type:Number,
+    //             default:0
+    //         }
+    //     }]
+    //     //need to add the price and discount as well as the image of thr product
+    // }],
+    menu:[{
+        menu_heading:{
+            type:String,
+        },
+        meals:[{
+            meal_name:{
+                type:String,
+                required:[true,"A meal must have a name"]
+            },
+            price:{
+                type:Number,
+                required:[true,"A meal must have a price"]
+            },
+            discount:{
+                type:Number,
+                default:0
+            },
+            meal_photo:{
+                type:String
+            }
+
+        }]
     }],
     qr_code:{
         type: String

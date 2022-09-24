@@ -51,7 +51,9 @@ exports.signup = catchAsync(async(req,res,next)=>{
         phone: req.body.phone,
         menu_category:req.body.menu_category,
         confirmPassword: req.body.confirmPassword,
-        passwordChangedAt: req.body.passwordChangedAt
+        passwordChangedAt: req.body.passwordChangedAt,
+        location: req.body.location,
+        menu: req.body.menu
         //we need to add the qr code here
     })
 
@@ -62,7 +64,7 @@ exports.signup = catchAsync(async(req,res,next)=>{
     //header will be attached itself so dont worry about it
     // {if:newUser._id} is the payload
     //expiresin is the option , see the documentation for more
-    createSendToken(newUser,201,res)
+    createSendToken(newRest,201,res)
 });
 
 
@@ -77,11 +79,10 @@ exports.login= catchAsync(async(req,res,next)=>{
     const rest = await Rest.findOne({email}).select('+password');//here user original password is included becoz it is required in fu
 
     //if the user with given email is not there or his password does not match with the given password
-    if(!rest||! (await rest.comparePassword(password,user.password)))
+    if(!rest||! (await rest.comparePassword(password,rest.password)))
     return next(new AppError('Incorrect email or password',401))
-
     //if everything is correct send the token to the client
-    createSendToken(user,200,res)
+    createSendToken(rest,200,res)
 })
 
 exports.logout = (req,res)=>{

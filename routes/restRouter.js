@@ -9,7 +9,7 @@ const rauthController = require('./../controllers/rauthController.js');
 router.route('/').get(restController.getAllRests);
 router.post('/signup',rauthController.signup);
 router.post('/login',rauthController.login);
-router.get('/logout',rauthController.logout);
+router.get('/logout',rauthController.protect, rauthController.logout);
 router.get('/protect',rauthController.protect);
 
 
