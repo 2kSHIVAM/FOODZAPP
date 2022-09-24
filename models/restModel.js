@@ -100,6 +100,9 @@ const restSchema= new mongoose.Schema({
             },
             meal_photo:{
                 type:String
+            },
+            rating:{
+                type:Number
             }
 
         }]
