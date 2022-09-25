@@ -3,7 +3,7 @@ const catchAsync = require('./../utils/catchError')
 const jwt = require('jsonwebtoken');
 const AppError = require('./../utils/AppError')
 const { promisify } =require('util');
-// const  Email= require('./../utils/email')
+const  Email= require('./../utils/email')
 
 const crypto = require('crypto');
 const jwtSignToken= id=>{
@@ -56,9 +56,9 @@ exports.signup = catchAsync(async(req,res,next)=>{
     // const url=`${req.protocol}://${req.get('host')}/me`;
     // // console.log(url);
     // await new Email(newUser,url).sendWelcome();
-    //header will be attached itself so dont worry about it
+    // header will be attached itself so dont worry about it
     // {if:newUser._id} is the payload
-    //expiresin is the option , see the documentation for more
+    // expiresin is the option , see the documentation for more
     createSendToken(newUser,201,res)
 });
 
@@ -97,15 +97,15 @@ exports.logout = (req,res)=>{
     let token;
     // if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
     // token = req.headers.authorization.split(' ')[1];
-    // // console.log(token);
+    // console.log(token);
     // }
     if(req.cookies.jwt){
       token = req.cookies.jwt;
     }
-    if(!token)
-    return next(new AppError('You are logged out!! Please log in to get the access',401));
+    if(!token){    console.log(req.cookies.jwt)
 
-    
+    return next(new AppError('You are logged out!! Please log in to get the access',401));
+    }
     //VERIFICATION OF THE TOKEN 
     const decode = await promisify(jwt.verify)(token,process.env.JWT_SECRET_KEY);
     // console.log(decode);
@@ -141,3 +141,35 @@ exports.logout = (req,res)=>{
     // })
     next();
 });
+
+exports.forgotPassword= catchAsync(async (req,res,next)=>{
+  const user=await User.findOne({email:req.body.email});
+  if(!user)
+  return next(new AppError("No user found with the given email",404));
+
+  const resetToken = user.createdPasswordResetToken();
+  await user.save({validateBeforeSave:false});
+
+  try{
+    const resetUrl=`${req.protocol}://${req.get('host')}/api/v1/users/forgotPassword/${resetToken}`;
+    await new Email(user,resetUrl).sendPasswordReset();
+    // console.log(reqUrl)
+    res.status(200).json({
+      status:"success",
+      message:"Token sent to email"
+    })
+
+
+  }catch (err) {
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save({ validateBeforeSave: false });
+    console.log(err)
+    return next(
+      new AppError('There was an error sending the email. Try again later!'),
+      500
+    );
+  }
+  
+});
+

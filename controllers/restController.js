@@ -32,9 +32,9 @@ exports.getAllRests = catchAsync(async(req, res) =>{
 })
 
 exports.getRest=catchAsync(async(req,res,next)=>{
-    const rest=await Rest.findById(req.params.id);
+    const rest=await Rest.find({slug:req.params.slugi});
     if(!rest) 
-    return next(new AppError("No rest exists with the given Id", 404));
+    return next(new AppError("No rest exists with the given slug", 404));
     res.status(200).json({
         message:"success",
         rest:rest

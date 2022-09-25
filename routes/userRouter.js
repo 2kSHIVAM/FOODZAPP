@@ -4,6 +4,7 @@ const userController = require('./../controllers/userController.js');
 const authController = require('./../controllers/authController.js');
 const cartController = require('./../controllers/cartController.js');
 
+const historyController = require('./../controllers/historyController.js');
 
 
 
@@ -19,13 +20,15 @@ router.post('/createCart',authController.protect,cartController.addToCart);
 //THE BELOW TWO WILL REMAIL IN USER ROUTER BECAUSE FOR CART A SEPARATE PAGE WILL OPEN AND IT WILL HAVE THE USER IN PARAMETER
 router.get('/myCart',authController.protect,cartController.getCart)
 router.delete('/emptyCart',authController.protect,cartController.emptyCart)
+router.post('/placeOrder',authController.protect,historyController.updateHistory);
+router.get('/myOrders',authController.protect,historyController.showOrderHistory)
 
-// router.post('/forgotPassword',authController.forgotPassword);
+router.post('/forgotPassword',authController.forgotPassword);
 // router.patch('/updatePassword',authController.protect,authController.updatePassword);// we have to make sure that the user is loggedin before he is attempting to change the password
 // router.patch('/resetPassword/:token',authController.resetPassword);
 
 //need to add middleware for the photo and resizing it
-router.post('/updateMe',authController.protect,userController.updateMe);
+router.post('/updateMe',authController.protect,userController.uploadUserPhoto,userController.resizeUserPhoto,userController.updateMe);
 
 router.delete('/deleteMe',authController.protect, userController.deleteMe);
 // router.get('/me',authController.protect,userController.getMe,userController.getUser);

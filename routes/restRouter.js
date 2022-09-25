@@ -10,9 +10,7 @@ router.route('/').get(restController.getAllRests);
 router.post('/signup',rauthController.signup);
 router.post('/login',rauthController.login);
 router.get('/logout',rauthController.protect, rauthController.logout);
-router.get('/protect',rauthController.protect);
-
-
+// router.get('/protect',rauthController.protect);
 // router.post('/forgotPassword',rauthController.forgotPassword);
 // router.patch('/updatePassword',rauthController.protect,rauthController.updatePassword);// we have to make sure that the rest is loggedin before he is attempting to change the password
 // router.patch('/resetPassword/:token',rauthController.resetPassword);
@@ -21,10 +19,13 @@ router.get('/protect',rauthController.protect);
 router.post('/updateMe',rauthController.protect,restController.updateMe);
 
 router.delete('/deleteMe',rauthController.protect, restController.deleteMe);
+
+router.route('/:slugi').get(restController.getRest)
 // router.get('/me',rauthController.protect,restController.getMe,restController.getrest);
 
 
 //restricted for the admin only
-router.route('/:id').get(restController.getRest).delete(restController.deleteRest);
+router.route('/:id').delete(restController.deleteRest);
+
 
 module.exports=router;
