@@ -8,3 +8,4 @@ use of the send grid for mailing during the signup and login popup that you have
 we will provide the link with the mail to the user so that the user can use the link to access his profile
 
 otp and email verification
+forgot password on email 

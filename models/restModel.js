@@ -58,7 +58,21 @@ const restSchema= new mongoose.Schema({
     ratingsAverage:{
         type:Number
     },
-
+    city:{
+        type: String
+    },
+    country:{
+        type: String
+    },
+    greeting:{
+        type:String
+    },
+    message:{
+        type:String
+    },
+    title:{
+        type:String
+    },
     active:{
         type: Boolean,
         default: true,

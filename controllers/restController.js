@@ -2,6 +2,7 @@ const AppError = require("../utils/AppError");
 const { findByIdAndUpdate } = require("../models/restModel");
 const Rest = require('../models/restModel');
 const APIFeatures = require('../utils/apifeatures');
+const slugify=require('slugify')
 const catchAsync = require('../utils/catchError');
 // const factory = require('./handlerFactory');
 const multer = require('multer');
@@ -57,6 +58,8 @@ exports.updateMe=catchAsync(async(req,res,next)=>{
     return next(new AppError('This route is not for password updates',400));
   }
   const filteredBody=filterObj(req.body,'name','email','phone');
+  if(filteredBody.name)
+  filteredBody.slug=slugify(filteredBody.name,{lower:true});
   if(req.file)
   {
     filteredBody.photo=req.file.filename;// we got the req.file.filename from the resiezeRestPhoto
@@ -80,6 +83,16 @@ exports.deleteMe=catchAsync(async(req,res,next)=>{
     res.status(204).json({
         message:"success",
         data:null
+    })
+})
+
+exports.getMe=catchAsync(async(req,res)=>{
+    const rest=await Rest.findById(req.rest.id);
+    res.status(200).json({
+        massage:"status",
+        data:{
+            rest
+        }
     })
 })
 

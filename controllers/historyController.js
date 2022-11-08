@@ -1,4 +1,6 @@
 const OrderHistory=require('./../models/orderHistoryModel');
+const OrderHistoryRest=require('./../models/orderHistoryModelRest');
+
 const Cart=require('./../models/cartModel')
 const AppError = require("../utils/AppError");
 const catchAsync = require('./../utils/catchError');
@@ -11,8 +13,16 @@ exports.showOrderHistory=catchAsync(async(req,res)=>{
         data:orders
     })
 })
+exports.showOrderHistoryRest=catchAsync(async(req,res)=>{
+    const orders=await OrderHistoryRest.find({rest:req.rest});
+    res.status(200).json({
+        status:"success",
+        data:orders
+    })
+})
 
 exports.updateHistory=catchAsync(async(req,res,next)=>{
+    
     const cart= await Cart.findOne({user:req.user});
     const order=await OrderHistory.findOne({user:req.user})
     let orderHistory
@@ -22,10 +32,31 @@ exports.updateHistory=catchAsync(async(req,res,next)=>{
     orderHistory=await OrderHistory.create({
         user:req.user,
         orders:cart
-
     })}
     else{
-        const orderHistory=await OrderHistory.findOneAndUpdate({user:req.user},{
+        orderHistory=await OrderHistory.findOneAndUpdate({user:req.user},{
+            $push:{orders:cart}
+        })
+    }
+    next();
+})
+
+
+
+exports.updateHistoryRest=catchAsync(async(req,res,next)=>{
+
+    const cart= await Cart.findOne({user:req.user});
+    console.log(cart.rest)
+    const order=await OrderHistoryRest.findOne({rest:cart.rest})
+    let orderHistoryRest
+    //if no prior history
+    if(!order){
+        orderHistoryRest=await OrderHistoryRest.create({
+        rest:cart.rest,
+        orders:cart
+    })}
+    else{
+        orderHistoryRest=await OrderHistoryRest.findOneAndUpdate({rest:cart.rest},{
             $push:{orders:cart}
         })
     }

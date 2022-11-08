@@ -2,9 +2,9 @@ const express = require('express');
 const router= express.Router();
 const restController = require('./../controllers/restController.js');
 const rauthController = require('./../controllers/rauthController.js');
-
-
-
+const authController = require('./../controllers/authController.js');
+const cartController = require('./../controllers/cartController.js');
+const historyController = require('./../controllers/historyController.js');
 
 router.route('/').get(restController.getAllRests);
 router.post('/signup',rauthController.signup);
@@ -16,12 +16,21 @@ router.get('/logout',rauthController.protect, rauthController.logout);
 // router.patch('/resetPassword/:token',rauthController.resetPassword);
 
 //need to add middleware for the photo and resizing it
-router.post('/updateMe',rauthController.protect,restController.updateMe);
+
+
+router.post('/updateMe',rauthController.protect,restController.uploadRestPhoto,restController.resizeRestPhoto,restController.updateMe);
 
 router.delete('/deleteMe',rauthController.protect, restController.deleteMe);
+router.get('/me',rauthController.protect,restController.getMe);
+
+router.get('/myOrders',rauthController.protect,historyController.showOrderHistoryRest)
+
 
 router.route('/:slugi').get(restController.getRest)
-// router.get('/me',rauthController.protect,restController.getMe,restController.getrest);
+router.route('/:slugi').post(authController.protect,cartController.addToCart)
+
+// router.post('/createCart',);
+
 
 
 //restricted for the admin only

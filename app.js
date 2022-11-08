@@ -11,10 +11,11 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const globalErrorHandler=require('./controllers/errorController')
 const userRouter = require('./routes/userRouter');
+const viewRouter = require('./routes/viewRouter');
 const AppError=require('./utils/AppError')
 
-// app.set('view engine','pug');
-// app.set('views', path.join(__dirname, 'views'));
+app.set('view engine','pug');
+app.set('views', path.join(__dirname, 'views'));
 
 
 // serving static files
@@ -82,6 +83,8 @@ app.use((req, res, next) => {
 
 
 const restRouter = require('./routes/restRouter')
+
+app.use('/', viewRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/restaurants', restRouter);
 

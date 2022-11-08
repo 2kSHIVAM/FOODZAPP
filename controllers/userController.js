@@ -41,6 +41,17 @@ exports.getUser=catchAsync(async(req,res,next)=>{
     })
 })
 
+exports.getMe=catchAsync(async(req,res)=>{
+    const user=await User.findById(req.user.id);
+    // console.log(req.user._id)
+    res.status(200).json({
+        status:"success",
+        data:{
+            user
+        }
+    })
+})
+
 //only the admin can do this task
 exports.deleteUser=catchAsync(async(req,res,next)=>{
     const doc=await User.findByIdAndDelete(req.params.id);

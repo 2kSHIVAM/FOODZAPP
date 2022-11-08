@@ -53,7 +53,13 @@ exports.signup = catchAsync(async(req,res,next)=>{
         confirmPassword: req.body.confirmPassword,
         passwordChangedAt: req.body.passwordChangedAt,
         location: req.body.location,
-        menu: req.body.menu
+        city:req.body.city,
+        country:req.body.country,
+        message:req.body.message,
+        greeting:req.body.greeting,
+        title:req.body.title,
+        menu: req.body.menu,
+        ratingsAverage:req.body.ratingsAverage
         //we need to add the qr code here
     })
 
@@ -145,3 +151,35 @@ exports.logout = (req,res)=>{
     // })
     next();
 });
+
+
+
+
+exports.isLoggedIn = async(req,res,next)=>{
+  
+  if(req.cookies.jwt){
+  try{
+  // 1) verify the token
+  const decode = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET_KEY);
+
+  // 2) check if the user exist
+  const currentRest = await Rest.findById(decode.id);
+  if(!currentRest)
+  {
+      return next();
+  }
+
+  // 3) check if the user changed the password after the token was issued
+  if(currentRest.changedPasswordAfter(decode.iat))
+  {
+      return next();
+  }
+
+  res.locals.rest = currentRest;
+  return next();
+}catch(err){
+  return next();
+}
+}
+next();
+};

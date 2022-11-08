@@ -82,9 +82,7 @@ module.exports = (err,req,res,next)=>{
     }
     else if(process.env.NODE_ENV=="production")
     {
-        //note : here, error = { ...err }, did not assign the err.name into error
-        // so we are using error = Object.assign(err)
-        let error = Object.assign(err);
+        let error = Object.assign(err);// we could have used the ...(destructor) but we did not get the desired outcome
         if(error.name==="CastError")
         {
             // console.log('hello');

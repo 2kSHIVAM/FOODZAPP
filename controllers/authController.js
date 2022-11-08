@@ -20,7 +20,7 @@ const jwtSignToken= id=>{
       ),
       httpOnly: true
     };
-    if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+    if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;// this condition need to figure out..found on stackoverflow
   
     res.cookie('jwt', token, cookieOptions);
   
@@ -102,7 +102,7 @@ exports.logout = (req,res)=>{
     if(req.cookies.jwt){
       token = req.cookies.jwt;
     }
-    if(!token){    console.log(req.cookies.jwt)
+    if(!token){    
 
     return next(new AppError('You are logged out!! Please log in to get the access',401));
     }
@@ -123,13 +123,6 @@ exports.logout = (req,res)=>{
         return next(new AppError("The user with this token no longer exists",401));
     }
 
-    //CHECK IF THE USER CHANGED THE PASSWORD AFTER THE TOKEN WAS ISSUED
-
-    // if(currentUser.changedPasswordAfter(decode.iat))
-    // {
-    //     // console.log("hello");
-    //     return next(new AppError("User recently changed Password !! Please log in again",401))
-    // }
 
     //GRANT THE ACCESS TO THE PROTECTED ROUTE
     req.user = currentUser;
@@ -173,3 +166,33 @@ exports.forgotPassword= catchAsync(async (req,res,next)=>{
   
 });
 
+
+
+exports.isLoggedIn = async(req,res,next)=>{
+  
+  if(req.cookies.jwt){
+  try{
+  // 1) verify the token
+  const decode = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET_KEY);
+
+  // 2) check if the user exist
+  const currentUser = await User.findById(decode.id);
+  if(!currentUser)
+  {
+      return next();
+  }
+
+  // 3) check if the user changed the password after the token was issued
+  if(currentUser.changedPasswordAfter(decode.iat))
+  {
+      return next();
+  }
+
+  res.locals.user = currentUser;
+  return next();
+}catch(err){
+  return next();
+}
+}
+next();
+};
