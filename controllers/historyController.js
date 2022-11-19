@@ -60,7 +60,5 @@ exports.updateHistoryRest=catchAsync(async(req,res,next)=>{
             $push:{orders:cart}
         })
     }
-    res.status(200).json({
-        status: 'success',
-    })
+    next()
 })

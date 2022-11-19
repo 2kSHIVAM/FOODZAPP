@@ -9,3 +9,6 @@ we will provide the link with the mail to the user so that the user can use the 
 
 otp and email verification
 forgot password on email 
+
+
+note after the check out is complete the success url should be place order so that the order can be placed

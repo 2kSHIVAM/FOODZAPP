@@ -4,6 +4,7 @@ const AppError = require('./../utils/AppError');
 const Rest = require('./../models/restModel')
 const Cart = require('./../models/cartModel')
 const OrderHistory = require('./../models/orderHistoryModel')
+const OrderHistoryRest = require('./../models/orderHistoryModelRest')
 
 
 exports.getOverview = catchAsync(async(req,res)=>{
@@ -74,9 +75,16 @@ exports.getOverview = catchAsync(async(req,res)=>{
 
 
   exports.getAccount = (req,res)=>{
+    let data;
+    if(req.user)
+    data='User'
+    else if(req.rest)
+    data='Rest'
+
     res.status(200).render('account',
     {
-        title: 'Your accounts'
+        title: 'Your accounts',
+        data:data
     })
   }
 
@@ -98,6 +106,22 @@ exports.getOverview = catchAsync(async(req,res)=>{
   //   })
   // }
 
+  exports.getBillPage=catchAsync(async(req,res,next)=>{
+    const data=await OrderHistory.find({user:req.user});
+    let si=data[0].orders.length;
+    // console.log(data[0].orders[si-1]);
+    const price = data[0].orders[si-1].meals.map(el=>el.price*el.quantity)
+    let newprice=0
+    for(let i=0;i<price.length;i++)
+    newprice=newprice+price[i]
+
+    res.status(200).render('placed-order-page',{
+      title:"Bill",
+      data: data[0].orders[si-1].meals,
+      totalPrice: newprice
+    })
+  })
+
   exports.getMyOrders = catchAsync(async (req, res, next) => {
     // 1) Find all bookings
     // const bookings = await Booking.find({ user: req.user.id });
@@ -110,13 +134,41 @@ exports.getOverview = catchAsync(async(req,res)=>{
     const rests = await Rest.find({ _id: { $in: restIDs } });
     const restName=rests.map(el=>el.name);
     console.log(restIDs);
-
-  
+   
+   
     res.status(200).render('user_order', {
       title: 'My Orders',
       data:rests
     });
   });
+
+  exports.getMyOrderRest=catchAsync(async(req,res,next)=>{
+    const result=await OrderHistoryRest.find({rest:req.rest});
+    const newresult=result[0].orders
+    const da=[];
+    const ids=[]
+    // console.log(newresult)
+    for(let i=0;i<newresult.length;i++)
+    {
+      const ans=await User.find({_id:newresult[i].user})
+      da[i]=ans[0]
+      ids[i]=newresult[i]._id
+    }
+    console.log(ids)
+    da.reverse()
+    ids.reverse()
+    newresult.reverse()
+    // console.log(da)
+    // console.log(ans);
+    res.status(200).render('my-order-rest', {
+      title: 'My Orders',
+      data:da,
+      result:newresult
+    });
+  })
+
+
+
   
   exports.cart=catchAsync(async(req,res) => {
     const data=await Cart.findOne({user:req.user})

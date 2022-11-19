@@ -1,14 +1,22 @@
 header.header
     nav.nav.nav--tours
-        a.nav__el(href='/') All tours
+        a.nav__el(href='/') Home
     .header__logo
         img(src='/img/logo-white.png', alt='Natours logo')
     nav.nav.nav--user
         if user
+            a.nav__el(href='/cart')
+                img.nav__user-img(src='https://cdn-icons-png.flaticon.com/512/4290/4290854.png')
             a.nav__el.nav__el--logout Log out
-            a.nav__el(href='/me')
+            a.nav__el(href='/me-user')
                 img.nav__user-img(src=`/img/to-user/${user.photo}`, alt=`Photo of ${user.name}`)
                 span= user.name.split(' ')[0]
+        else if rest
+            a.nav__el.nav__el--logout Log out
+            a.nav__el(href='/me-rest')
+                img.nav__user-img(src=`https://cdn.vox-cdn.com/thumbor/OheW0CNYdNihux9eVpJ958_bVCE=/0x0:5996x4003/1200x900/filters:focal(1003x1633:1961x2591)/cdn.vox-cdn.com/uploads/chorus_image/image/51830567/2021_03_23_Merois_008.30.jpg`, alt=``)
+                span= `Rest`
+                //- note that the above image link has to be changed okkk
         else
-            a.nav__el(href='/login') Log in
+            a.nav__el(href='/login-user') Log in
             a.nav__el.nav__el--cta(href='/signup') Sign up

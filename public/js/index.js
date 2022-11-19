@@ -3,11 +3,20 @@ import '@babel/polyfill'
 import {signup} from './signup'
 // import { displayMap } from './mapbox'
 import { updateSettings } from './updateSettings'
+import { bookFood } from './stripe'
 // import { bookTour } from './stripe';
 const User = require('../../models/userModel');
 const Rest = require('../../models/restModel');
+const catchAsync = require('../../utils/catchError');
 
-
+// async function check(email){
+//   const user = await User.find({email:email})
+//   if(user)
+//   return 'User'
+//   const rest = await Rest.findOne({email:email})
+//   if(rest) 
+//   return 'Rest'
+// }
 // DOM ELEMENTS
 // const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');// until some one click on submit it will not activate 
@@ -16,7 +25,7 @@ const signupForm = document.querySelector('.form--signup');// until some one cli
 
 const userDataForm = document.querySelector('.form-user-data')
 const userPasswordForm = document.querySelector('.form-user-password')
-// const bookBtn = document.querySelector('#book-tour');
+const bookBtn = document.getElementById('book-food')
 
 //VALUES
 
@@ -28,22 +37,19 @@ const userPasswordForm = document.querySelector('.form-user-password')
 //     displayMap(locations);
 // }
 
+
+const data='User' // we will make a page to choose from login for user or rest 
+// depending on that we will change the data value
+
+
 if(loginForm)
     addEventListener('submit',e=>{
     e.preventDefault();
     const email = document.getElementById('email').value;
+    
     const password = document.getElementById('password').value;
-    // let data;
-    // catchAsync(async(req,res,next)=>{
-    //   const user = await User.findOne({email:email})
-    //   if(user)
-    //   data='User'
-    //   const rest = await Rest.findOne({email:email})
-    //   if(rest) 
-    //   data='Rest'
-    // })
-    // console.log(data)
-    login(email,password);
+    // const data=check(email)
+    login(email,password,data)
 })
 
 if(signupForm)
@@ -71,6 +77,10 @@ if (userDataForm)
     updateSettings(form, 'data');
   });
 
+
+
+  // note we need the add the event listener for when the user clicks on place order and will make the payment then the place order of the user has to be called 
+
 // if(userPasswordForm)
 // {
 //     userPasswordForm.addEventListener('submit',async e=>{
@@ -90,13 +100,11 @@ if (userDataForm)
 //     })
 // }
 
-
-// if (bookBtn){
-//   // console.log("hello from btn")
-//   bookBtn.addEventListener('click', e => {
-//     e.target.textContent = 'Processing...';
-//     const tourId = e.target.dataset.tourId;
-//     bookTour(tourId);
-//   });
-
-// }
+if (bookBtn){
+  // console.log('hello')
+  bookBtn.addEventListener('click', e => {
+    e.target.textContent = 'Processing...';
+    const foodId = e.target.dataset.foodId;
+    bookFood(foodId);
+  });
+}

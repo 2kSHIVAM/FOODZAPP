@@ -1,11 +1,23 @@
 import axios from 'axios'
 import { showAlert } from './alerts'
-export const login = async (email,password)=>{
+export const login = async (email,password,data)=>{
     // let result
     // console.log(data)
     try{
-        
-            const result = await axios({
+        let result
+        if(data==='Rest'){
+            result = await axios({
+                method: 'POST',
+                url: '/api/v1/restaurants/login',
+                data:{
+                    email,
+                    password
+                }
+            });
+        }
+        else if(data==='User')
+        {
+            result = await axios({
                 method: 'POST',
                 url: '/api/v1/users/login',
                 data:{
@@ -13,7 +25,7 @@ export const login = async (email,password)=>{
                     password
                 }
             });
-
+        }
         
 
         if(result.data.status==='success'){

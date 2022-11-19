@@ -49,10 +49,23 @@ const historySchema = new mongoose.Schema({
         ],
         final_price:{
             type:Number
+        },
+        delivered:{
+            type:Boolean,
+            default:false
         }
     }]
 
 })
+// historySchema.pre(/^find/, function(next) {
+//     this.populate({
+//       path: 'user',
+//       select: 'name',
+//       select: 'phone'
+
+//     });
+//     next();
+//   });
 
 const OrderHistoryRest=mongoose.model('OrderHistoryRest',historySchema);
 module.exports=OrderHistoryRest;

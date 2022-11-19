@@ -12,8 +12,9 @@ const app = express();
 const globalErrorHandler=require('./controllers/errorController')
 const userRouter = require('./routes/userRouter');
 const viewRouter = require('./routes/viewRouter');
+const bookingsRouter=require('./routes/bookingsRouter');
 const AppError=require('./utils/AppError')
-
+var cors = require('cors')
 app.set('view engine','pug');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -79,6 +80,7 @@ app.use((req, res, next) => {
     next(); // if there is not next we will be stuck here for ever
   });
   
+  app.use(cors())
 
 
 
@@ -87,7 +89,7 @@ const restRouter = require('./routes/restRouter')
 app.use('/', viewRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/restaurants', restRouter);
-
+app.use('/api/v1/booking',bookingsRouter)
 app.all('*',(req,res,next)=>{
   const err = new AppError(`The ${req.originalUrl} is invalid`,404);
   next(err);
