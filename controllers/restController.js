@@ -32,6 +32,27 @@ exports.getAllRests = catchAsync(async(req, res) =>{
 
 })
 
+exports.updateMenu=catchAsync(async(req,res,next)=>{
+        const rest=await Rest.findOne({_id:req.rest._id},{});
+        const menu=rest.menu;
+        let i;
+        for(i=0;i<menu.length;i++)
+        {
+            if(menu[i].menu_heading==req.body.c_name)
+            break;
+        }
+        if(i==menu.length)
+        {
+        menu.push({"menu_heading":req.body.c_name})
+        }
+        menu[i].meals.push({"meal_name":req.body.m_name,"price":req.body.m_price,"meal_photo":req.body.m_photo})
+        await Rest.findByIdAndUpdate({_id:req.rest._id},{menu:menu})
+        res.status(200).json({
+            status: 'success'
+        })
+
+})
+
 exports.getRest=catchAsync(async(req,res,next)=>{
     const rest=await Rest.find({slug:req.params.slugi});
     if(!rest) 
@@ -122,11 +143,11 @@ exports.uploadRestPhoto = upload.single('photo');
 
 exports.resizeRestPhoto =catchAsync( async (req,res,next)=>{
     if(!req.file) return next();
-    req.file.filename = `rest-${req.rest.id}-${Date.now()}.jpeg`
+    req.file.filename = `meal-${req.rest.id}-${Date.now()}.jpeg`
     //note: here we are using the await because the resizing and all these process happen in the background becoz they take a lot of time
     // and since we are calling next in this middleware it is not good practice, it might be possible that next is called first before the file is uploaded
     await sharp(req.file.buffer).resize(500,500)
-    .toFormat('jpeg').jpeg({quality:90})
-    .toFile(`public/img/to-rest/${req.file.filename}`);
+    .toFormat('jpeg').jpeg({quality:100})
+    .toFile(`public/img/meals_photo/${req.file.filename}`);
     next();
 });

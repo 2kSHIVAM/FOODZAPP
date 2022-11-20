@@ -5,18 +5,45 @@ block content
         .login-form
             h2.heading-secondary.ma-bt-lg Create new account
             form.form.form--signup
-                .form__group
-                    label.form__label(for='name') Full Name
-                    input#name.form__input(type='text', placeholder='First Second', required)
-                .form__group
-                    label.form__label(for='email') Email address
-                    input#email.form__input(type='email', placeholder='you@example.com', required)
-                .form__group.ma-bt-md
-                    label.form__label(for='password') Password
-                    input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
-                .form__group.ma-bt-md
-                    label.form__label(for='confirmPassword') Confirm Password
-                    input#confirmPassword.form__input(type='password', placeholder='••••••••', required, minlength='8')
-                .form__group
-                    button.btn.btn--green SignUp
-
+                - if(data=='User')
+                    .form__group
+                        label.form__label(for='name') Full Name
+                        input#name.form__input(type='text', placeholder='First Second', required)
+                    .form__group
+                        label.form__label(for='email') Email address
+                        input#email.form__input(type='email', placeholder='you@example.com', required)
+                    .form__group.ma-bt-md
+                        label.form__label(for='number') Phone
+                        input#phone.form__input(type='number', placeholder='9999999999', required, minlength='10')
+                    .form__group
+                        label.form__label(for='role') Role
+                        input#role.form__input(type='string', placeholder='••••••••', required, minlength='2')
+                    .form__group.ma-bt-md 
+                        label.form__label(for='password') Password
+                        input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    .form__group.ma-bt-md 
+                        label.form__label(for='confirmPassword') Confirm Password
+                        input#confirmPassword.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    .form__group
+                        button.btn.btn--green SignUp
+                - else if(data=='Rest')
+                    .form__group
+                        label.form__label(for='name') Restaurant's Name
+                        input#name.form__input(type='text', placeholder='eg. Taj Restaurant', required)
+                    .form__group
+                        label.form__label(for='email') Restaurant's address
+                        input#email.form__input(type='email', placeholder='restaurant@example.com', required)
+                    .form__group.ma-bt-md
+                        label.form__label(for='number') Phone
+                        input#phone.form__input(type='number', placeholder='8989898989', required, minlength='10')
+                    .form__group
+                        label.form__label(for='role') Role
+                        input#role.form__input(type='string', placeholder='user', required, minlength='2')
+                    .form__group.ma-bt-md 
+                        label.form__label(for='password') Password
+                        input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    .form__group.ma-bt-md 
+                        label.form__label(for='confirmPassword') Confirm Password
+                        input#confirmPassword.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    .form__group
+                        button.btn.btn--green SignUp

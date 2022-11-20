@@ -14,9 +14,10 @@ router.get('/',authController.isLoggedIn,rauthController.isLoggedIn,viewControll
 
 //NOTE: is logged is helping to find whether the user is logged in or not so that we can display his image in the profile and if not then we have to show login and sign up option in the navigation bar
 router.get('/login-user', authController.isLoggedIn,viewController.getLoginForm);
-router.get('/signup-user', authController.isLoggedIn,viewController.getSignUpForm);
+router.get('/signup-user', viewController.getSignUpForm);
 router.get('/login-rest', rauthController.isLoggedIn,viewController.getLoginForm);
-router.get('/signup-rest', rauthController.isLoggedIn,viewController.getSignUpForm);
+// router.get('/signup-rest', rauthController.isLoggedIn,viewController.getSignUpForm);
+router.get('/signup2-menu',viewController.getSignUpForm2)
 router.get('/me-user',authController.protect, viewController.getAccount);
 router.get('/me-rest',rauthController.protect, viewController.getAccount);
 

@@ -1,0 +1,59 @@
+extends base 
+block content
+        .login-form
+            .signup-form2
+                link#bootstrap-css(href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css', rel='stylesheet')
+                script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js')
+                script(src='//code.jquery.com/jquery-1.11.1.min.js')
+                //- script(src='/css/kl.js')
+                h2.heading-secondary.ma-bt-lg Create new account
+                form.form.form--signup
+                    .col-xs-12
+                        .col-md-12
+                            h3  Add Menu
+                            
+                            #field
+                                #field0                                    
+                                    .form-group
+                                        label.col-md-4.control-label(for='action_heading') Category
+                                        .col-md-6
+                                            input#category_name.form-control.input-md(name='action_heading', type='text', placeholder='oyoyoyoyo')
+                                            br
+                                    br
+                                    br
+                                    br
+                                    // Text input
+
+                                    .form-group
+                                        label.col-md-4.control-label(for='action_name') Meal Name
+                                        .col-md-6
+                                            input#meal_name.form-control.input-md(name='action_name', type='text', placeholder='hello')
+                                    br
+                                    br
+                                    // Text input
+                                    .form-group
+                                        label.col-md-4.control-label(for='action_price') Meal Price
+                                        .col-md-6
+                                            input#meal_price.form-control.input-md(name='action_price', type='number', placeholder='oyoyoyoyo')
+                                            br
+                                    br
+                                    br
+                                    // File Button
+                                    .form-group
+                                        label.col-md-4.control-label(for='action_photo') Meal Photo
+                                        .col-md-6
+                                            input#meal_photo.form-control.input-md(type='text', name='action_photo')
+                                            #action_jsondisplay
+                                            br
+                                    br
+                                    br
+                            // Button
+                            br
+                            br
+                            .form-group
+                                .col-md-4
+                                    .form__group
+
+                                        button.btn.btn--green Submit
+                            br
+                            br

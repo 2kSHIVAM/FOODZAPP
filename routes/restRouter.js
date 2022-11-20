@@ -19,7 +19,8 @@ router.get('/logout',rauthController.protect, rauthController.logout);
 
 
 router.post('/updateMe',rauthController.protect,restController.uploadRestPhoto,restController.resizeRestPhoto,restController.updateMe);
-
+// router.post('/signup2',rauthController.protect,restController.uploadRestPhoto,restController.resizeRestPhoto,restController.updateMenu);
+router.post('/signup2',rauthController.protect,restController.updateMenu);
 router.delete('/deleteMe',rauthController.protect, restController.deleteMe);
 router.get('/me',rauthController.protect,restController.getMe);
 

@@ -1,18 +1,38 @@
 import axios from 'axios'
 import { showAlert } from './alerts'
-export const signup = async (name,email,password,confirmPassword)=>{
+export const signup = async (name,email,phone,role,password,confirmPassword,data)=>{
     try{
-        const result = await axios({
-            method: 'POST',
-            url: '/api/v1/users/signup',
-            data:{
-                name,
-                email,
-                password,
-                confirmPassword
-            }
-        });
-
+        let result
+        if(data==='User')
+        {
+            result = await axios({
+                method: 'POST',
+                url: '/api/v1/users/signup',
+                data:{
+                    name,
+                    email,
+                    phone,
+                    role,
+                    password,
+                    confirmPassword
+                }
+            });
+        }
+        else if(data==='Rest')
+        {
+            result = await axios({
+                method: 'POST',
+                url: '/api/v1/restaurants/signup',
+                data:{
+                    name,
+                    email,
+                    phone,
+                    role,
+                    password,
+                    confirmPassword
+                }
+            });
+        }
         if(result.data.status==='success'){
             // alert('Logged in successfully');
             showAlert('success','Signed up successfully');

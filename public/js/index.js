@@ -1,4 +1,6 @@
 import { login,logout } from './login_logout'
+import { signup2 } from './signupform2'
+
 import '@babel/polyfill'
 import {signup} from './signup'
 // import { displayMap } from './mapbox'
@@ -22,7 +24,7 @@ const catchAsync = require('../../utils/catchError');
 const loginForm = document.querySelector('.form--login');// until some one click on submit it will not activate 
 const logOutBtn = document.querySelector('.nav__el--logout');
 const signupForm = document.querySelector('.form--signup');// until some one click on submit it will not activate 
-
+const signupForm2 = document.querySelector('.signup-form2');
 const userDataForm = document.querySelector('.form-user-data')
 const userPasswordForm = document.querySelector('.form-user-password')
 const bookBtn = document.getElementById('book-food')
@@ -38,8 +40,21 @@ const bookBtn = document.getElementById('book-food')
 // }
 
 
-const data='User' // we will make a page to choose from login for user or rest 
+const data='Rest' // we will make a page to choose from login for user or rest 
 // depending on that we will change the data value
+
+if(signupForm2)
+    addEventListener('submit',e=>{
+      e.preventDefault();
+      const c_name=document.getElementById('category_name').value
+      const m_name=document.getElementById('meal_name').value
+      const m_price=document.getElementById('meal_price').value
+      const m_photo=document.getElementById('meal_photo').value
+      // console.log(hno)
+      // console.log(m_name)
+      // console.log(m_price)
+      signup2(c_name,m_name,m_price,m_photo)
+})
 
 
 if(loginForm)
@@ -57,10 +72,11 @@ if(signupForm)
     e.preventDefault();
     const name=document.getElementById('name').value;
     const email = document.getElementById('email').value;
+    const phone =document.getElementById('phone').value;
+    const role = document.getElementById('role').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
-
-    signup(name,email,password,confirmPassword);
+    signup(name,email,phone,role,password,confirmPassword,data);
 })
 
 if(logOutBtn) logOutBtn.addEventListener('click',logout);
