@@ -25,6 +25,8 @@ router.get('/my-orders',authController.protect, viewController.getMyOrders);
 router.get('/my-orders-rest',rauthController.protect, viewController.getMyOrderRest);
 router.get('/cart',authController.protect, viewController.cart);
 router.get('/user-placed-order',authController.protect,historyController.updateHistory,historyController.updateHistoryRest,viewController.getBillPage)
+router.get('/restaurant/:restName',authController.isLoggedIn,viewController.getMyRest);
+
 // router.get('/tour/:slug_name', authController.isLoggedIn,viewController.getTour);
 
 // router.post('/submit-user-data',authController.protect, viewController.updateUserData)

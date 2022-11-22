@@ -78,6 +78,9 @@ const restSchema= new mongoose.Schema({
         default: true,
         select: false
     },
+    choice:{
+        type:String
+    },
     // menu_name:[{type:String,
     //     meals:[{
     //         meal_name:{

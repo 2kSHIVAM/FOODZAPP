@@ -1,0 +1,54 @@
+extends base
+block content
+    link(href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap', rel='stylesheet')
+    // Stylesheet
+    link(rel='stylesheet', href='/css/temp1_style.css')
+    .menu
+        .heading
+            h1= `${data.name}`
+            h3  MENU 
+        each item in data.menu
+            each meal in item.meals
+                .food-items
+                    img(src=`${meal.meal_photo}`)
+                    .details
+                        .details-sub
+                            h5= `${meal.meal_name}`
+                            h5.price= `${meal.price}`
+                        p
+                            | Lorem ipsum, dolor sit amet consectetur adipisicing elit reiciendis
+                            | nam non quia! Earum eveniet minus. Facilis explicabo natus nihil
+                            | voluptatem eveniet pariatur.
+                        .wrapper
+                            span.minus -
+                            span.num 00
+                            span.plus.button +
+    script.
+        var plus = document.getElementsByClassName("plus"),
+        minus = document.getElementsByClassName("minus"),
+        num = document.getElementsByClassName("num");
+        console.log(plus);
+        let a = 1;
+        for (var i = 0; i < plus.length; i++) {
+        let a = 1;
+        var inc = plus[i];
+        var dec = minus[i];
+        inc.addEventListener("click", function (event) {
+        var buttonClicked = event.target;
+        var input = buttonClicked.parentElement.children[2];
+        a++;
+        a = a < 10 ? "0" + a : a;
+        buttonClicked.parentElement.children[1].innerText = a;
+        console.log(a, buttonClicked);
+        });
+        dec.addEventListener("click", function (event) {
+        var buttonClicked = event.target;
+        var input = buttonClicked.parentElement.children[2];
+        if(a>1){
+        a--;
+        a = a < 10 ? "0" + a : a;
+        buttonClicked.parentElement.children[1].innerText = a;
+        console.log(a, buttonClicked);
+        }
+        });
+        }

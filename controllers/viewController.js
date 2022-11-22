@@ -6,6 +6,15 @@ const Cart = require('./../models/cartModel')
 const OrderHistory = require('./../models/orderHistoryModel')
 const OrderHistoryRest = require('./../models/orderHistoryModelRest')
 
+exports.getMyRest = catchAsync(async(req,res,next)=>{
+  // const rest_name_slug=req.params.restName;
+  const rest= await Rest.find({slug:req.params.restName});
+  const temp=rest[0].choice;
+  // const choice = rest.choice
+  res.status(200).render(`${temp}`,{
+    data:rest[0]
+  })
+})
 
 exports.getOverview = catchAsync(async(req,res)=>{
     // 1) get tour data from the collection
