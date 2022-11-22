@@ -1,0 +1,20 @@
+extends base
+block content
+    link(rel='stylesheet', href='/css/temp2_style.css')
+    section.food-area
+        .container
+            .title
+                h1= `${data.name}`
+                p famous for good food
+                h2 our menu
+            .foods
+                each item in data.menu
+                    each meal in item.meals
+                        .single-food
+                            .food-img
+                                img(src=`${meal.meal_photo}`, alt='')
+                                h4= `${item.menu_heading}`
+                            ul.food-list
+                                li= `${meal.meal_name}`
+                                    span= `${meal.price}`
+                            a(href='') order now
