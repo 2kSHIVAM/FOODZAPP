@@ -17,15 +17,15 @@ router.get('/login-user', authController.isLoggedIn,viewController.getLoginForm)
 router.get('/signup-user', viewController.getSignUpForm);
 router.get('/login-rest', rauthController.isLoggedIn,viewController.getLoginForm);
 // router.get('/signup-rest', rauthController.isLoggedIn,viewController.getSignUpForm);
-router.get('/signup2-menu',viewController.getSignUpForm2)
+router.get('/signup2-menu',rauthController.isLoggedIn,viewController.getSignUpForm2)
 router.get('/me-user',authController.protect, viewController.getAccount);
 router.get('/me-rest',rauthController.protect, viewController.getAccount);
 
 router.get('/my-orders',authController.protect, viewController.getMyOrders);
 router.get('/my-orders-rest',rauthController.protect, viewController.getMyOrderRest);
-router.get('/cart',authController.protect, viewController.cart);
+router.get('/cart',authController.protect,authController.isLoggedIn, viewController.cart);
 router.get('/user-placed-order',authController.protect,historyController.updateHistory,historyController.updateHistoryRest,viewController.getBillPage)
-router.get('/restaurant/:restName',authController.isLoggedIn,viewController.getMyRest);
+router.get('/restaurant/:restName',authController.protect,authController.isLoggedIn,viewController.getMyRest);
 
 // router.get('/tour/:slug_name', authController.isLoggedIn,viewController.getTour);
 

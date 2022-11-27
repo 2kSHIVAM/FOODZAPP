@@ -62,3 +62,22 @@ exports.updateHistoryRest=catchAsync(async(req,res,next)=>{
     }
     next()
 })
+
+exports.toAddTick=catchAsync(async(req,res,next)=>{
+    const order=await OrderHistoryRest.findOne({rest:req.body.restId})
+    let ans=order.orders
+
+    let i;
+    for(i=0;i<ans.length;i++)
+    {
+        if(ans[i]._id==req.body.foodId)
+        break;
+    }
+    ans[i].delivered=true;
+    // console.log(ans[i])
+    await OrderHistoryRest.findOneAndUpdate({rest:req.body.restId},{orders:ans})
+    res.status(200).json({
+        status: 'success'
+    })
+    // console.log(order)
+})

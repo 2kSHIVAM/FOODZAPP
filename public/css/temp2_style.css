@@ -133,3 +133,29 @@ body{
         flex-basis: 100%;
     }
 }
+
+.wrapper{
+  height: 60px;
+  min-width: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFF;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+
+}
+
+.wrapper span{
+  width: 100%;
+  text-align: center;
+  font-size: 27px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.wrapper span.num{
+  font-size: 25px;
+  border-right: 2px solid rgba(0,0,0,0.2);
+  border-left: 2px solid rgba(0,0,0,0.2);
+  pointer-events: none;
+}

@@ -3,6 +3,11 @@ import { showAlert } from './alerts'
 export const login = async (email,password,data)=>{
     // let result
     // console.log(data)
+    if(data=='hola')
+    {
+        showAlert('error','Wrong choice entered');
+    }
+    else{
     try{
         let result
         if(data==='Rest'){
@@ -41,6 +46,7 @@ export const login = async (email,password,data)=>{
         // alert(err.response.data.message);
         showAlert('error',err.response.data.message);
     }
+}
 }
 
 export const logout = async ()=>{

@@ -12,3 +12,26 @@ forgot password on email
 
 
 note after the check out is complete the success url should be place order so that the order can be placed
+
+
+
+
+
+
+
+
+
+
+
+scanner and qr
+rest to choose its page template
+data="user" ko shi karna h
+plus minus button
+user orders ko bhi tackle karna h
+details page
+signup page kiske lie khule restaurant or the user
+
+
+nikhil:
+detail
+qr

@@ -12,5 +12,13 @@ block content
                     label.form__label(for='password') Password
                     input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
                 .form__group
+                    label.heading-secondary.ma-bt-lg(for='choice') Login as :
+                    label.form__label(for='choice') Restaurant
+                    input#choice(type='checkbox', value='Restaurant')
+                    label.form__label(for='choice2') User
+                    input#choice2(type='checkbox', value='User')
+
+
+                .form__group
                     button.btn.btn--green Login
 

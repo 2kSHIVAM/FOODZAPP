@@ -1,50 +1,63 @@
-doctype html
-html(lang='en')
-    head
-        block head
-            meta(charset='UTF-8')
-            meta(http-equiv='X-UA-Compatible', content='IE=edge')
-            meta(name='viewport', content='width=device-width, initial-scale=1.0')
-            title Document
-            link(rel='stylesheet', href='/css/stylish.css')
-            //- link(rel='stylesheet', href='/css/style.css')
-            link(rel='stylesheet', href='/css/style1.css')
-            link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css')
-            // jQuery library
-            script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js')
-            // Latest compiled JavaScript
-            script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js')
-    body
-        //- include _header
-        block content
-        -  function editItem(s) { s==true};
-            .container
-                .row
-                    .mody
-                        each item,id in data
-                            
-                            .col-lg-4
-                                .card.card-margin
-                                    .card-header.no-border
-                                        h5.card-title= `${item.name}`
-                                        
-                                    .card-body.pt-0
-                                        .widget-49
-                                            .widget-49-title-wrapper
-                                                .widget-49-date-primary
-                                                    span.widget-49-date-day 09
-                                                    span.widget-49-date-month apr
-                                                .widget-49-meeting-info
-                                                    span.widget-49-pro-title= `TOKEN: ${result[id]._id}`
-                                                    span.widget-49-meeting-time 12:00 to 13.30 Hrs
-                                            ol.widget-49-meeting-points
-                                                li.widget-49-meeting-item
-                                                    span= `${item.email}`
-                                                li.widget-49-meeting-item
-                                                    span= `PHONE: ${item.phone}`
-                                                - if(result[id].delivered==true)
-                                                    img.img-tick(src="https://tse3.mm.bing.net/th?id=OIP.GxSdgZx4VkM4ZHcxx6JwrwHaGb&pid=Api&P=0")
-                                                - else 
-                                                    input.btn.btn-primary(type='button' value='Delivered ?' onclick=`editItem(${result[id].delivered})`)
-                                            .widget-49-meeting-action
-                                                a.btn.btn-sm.btn-flash-border-primary(href='#') View All
+extends base
+
+mixin navItem(link,text,icon,active)
+    li(class=`${active?'side-nav--active':''}`)
+        a(href=link)
+            svg
+                use(xlink:href=`img/icons.svg#icon-${icon}`)
+            | #{text}
+block content
+    link(rel='stylesheet', href='/css/stylish.css')
+    //- link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/style1.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css')
+    // jQuery library
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+    // Latest compiled JavaScript
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js')
+
+    main.main
+        .user-view
+            nav.user-view__menu
+                ul.side-nav
+                    +navItem('/me-rest','Settings','settings')
+                    +navItem('/my-orders-rest','My bookings','briefcase',true)
+                    +navItem('signup2-menu','Make Your Menu','star')
+                    +navItem('#','Billing','credit-card')
+
+            .user-view__content
+                h2.heading-secondary.ma-bt-md Your account settings
+                //- WITHOUT API
+                //- form.form.form-user-data(action='/submit-user-data',method='POST')
+
+                //- WITH API
+                -  function editItem(s) { s==true};
+                    .container
+                        .row
+                            .mody
+                                each item,id in data
+                                    .col-lg-4
+                                        .card.card-margin
+                                            .card-header.no-border
+                                                h5.card-title= `${item.name}`
+
+                                            .card-body.pt-0
+                                                .widget-49
+                                                    .widget-49-title-wrapper
+                                                        .widget-49-date-primary
+                                                            span.widget-49-date-day 09
+                                                            span.widget-49-date-month apr
+                                                        .widget-49-meeting-info
+                                                            span.widget-49-pro-title= `TOKEN: ${result[id]._id}`
+                                                            span.widget-49-meeting-time 12:00 to 13.30 Hrs
+                                                    ol.widget-49-meeting-points
+                                                        li.widget-49-meeting-item
+                                                            span= `${item.email}`
+                                                        li.widget-49-meeting-item
+                                                            span= `PHONE: ${item.phone}`
+                                                        - if(result[id].delivered==true)
+                                                            img.img-tick(src="https://tse3.mm.bing.net/th?id=OIP.GxSdgZx4VkM4ZHcxx6JwrwHaGb&pid=Api&P=0")
+                                                        - else 
+                                                            input.btn.btn-primary#addTick(type='button' value='Delivered ?' data-food-id=`${result[id]._id},${restId}`)
+                                                    .widget-49-meeting-action
+                                                        a.btn.btn-sm.btn-flash-border-primary(href='#') View All

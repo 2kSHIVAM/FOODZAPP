@@ -28,7 +28,8 @@ router.get('/myOrders',rauthController.protect,historyController.showOrderHistor
 
 
 router.route('/:slugi').get(restController.getRest)
-router.route('/:slugi').post(authController.protect,cartController.addToCart)
+router.route('/addToCart').post(authController.isLoggedIn,cartController.addToCart)
+router.route('/addTick').post(historyController.toAddTick)
 
 // router.post('/createCart',);
 

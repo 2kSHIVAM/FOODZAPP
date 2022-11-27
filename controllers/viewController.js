@@ -8,11 +8,13 @@ const OrderHistoryRest = require('./../models/orderHistoryModelRest')
 
 exports.getMyRest = catchAsync(async(req,res,next)=>{
   // const rest_name_slug=req.params.restName;
+  const user = req.user
   const rest= await Rest.find({slug:req.params.restName});
   const temp=rest[0].choice;
   // const choice = rest.choice
   res.status(200).render(`${temp}`,{
-    data:rest[0]
+    data:rest[0],
+    user:user
   })
 })
 
@@ -187,7 +189,8 @@ exports.getOverview = catchAsync(async(req,res)=>{
     res.status(200).render('my-order-rest', {
       title: 'My Orders',
       data:da,
-      result:newresult
+      result:newresult,
+      restId:req.rest._id
     });
   })
 
@@ -197,6 +200,7 @@ exports.getOverview = catchAsync(async(req,res)=>{
   exports.cart=catchAsync(async(req,res) => {
     const data=await Cart.findOne({user:req.user})
     // console.log(data.meals)
+    // console.log(data)
     const price = data.meals.map(el=>el.price*el.quantity)
     let newprice=0
     for(let i=0;i<price.length;i++)

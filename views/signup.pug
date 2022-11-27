@@ -29,21 +29,44 @@ block content
                 - else if(data=='Rest')
                     .form__group
                         label.form__label(for='name') Restaurant's Name
-                        input#name.form__input(type='text', placeholder='eg. Taj Restaurant', required)
+                        input#name.form__input(type='text', placeholder='eg: Taj Restaurant', required)
                     .form__group
                         label.form__label(for='email') Restaurant's address
-                        input#email.form__input(type='email', placeholder='restaurant@example.com', required)
+                        input#email.form__input(type='email', placeholder='eg: restaurant@example.com', required)
                     .form__group.ma-bt-md
                         label.form__label(for='number') Phone
-                        input#phone.form__input(type='number', placeholder='8989898989', required, minlength='10')
+                        input#phone.form__input(type='number', placeholder='eg: 8989898989', required, minlength='10')
                     .form__group
                         label.form__label(for='role') Role
-                        input#role.form__input(type='string', placeholder='user', required, minlength='2')
+                        input#role.form__input(type='string', placeholder='eg: user', required, minlength='2')
+                    .form__group
+                        label.form__label(for='greeting') Greeting
+                        input#role.form__input(type='string', placeholder='eg: Hello there!!', required, minlength='2')
+                    .form__group
+                        label.form__label(for='role') Message
+                        input#role.form__input(type='string', placeholder='eg: To serve the best food', required, minlength='2')
+                    .form__group
+                        label.form__label(for='role') Title
+                        input#role.form__input(type='string', placeholder='eg: Best in town', required, minlength='2')
+                    .form__group
+                        label.form__label(for='role') City
+                        input#role.form__input(type='string', placeholder='eg: Lucknow', required, minlength='2')
+                    .form__group
+                        label.form__label(for='role') Country
+                        input#role.form__input(type='string', placeholder='eg: India', required, minlength='2')
                     .form__group.ma-bt-md 
                         label.form__label(for='password') Password
                         input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
                     .form__group.ma-bt-md 
                         label.form__label(for='confirmPassword') Confirm Password
                         input#confirmPassword.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    .form__group.ma-bt-md 
+                        h6.heading-secondary.ma-bt-lg(for='choice') Choose Your Template
+                        label.form__label(for='choice') Template 1
+                        input#choice(type='checkbox', value='Template 1') 
+                        a(href='https://www.freecodecamp.org/', target='_blank') Test it
+                        label.form__label(for='choice2') Template 2
+                        input#choice2(type='checkbox', value='Template 2')
+                        a(href='https://www.freecodecamp.org/', target='_blank') Test it
                     .form__group
                         button.btn.btn--green SignUp

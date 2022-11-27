@@ -1,5 +1,7 @@
 import { login,logout } from './login_logout'
 import { signup2 } from './signupform2'
+import {addToCart} from './addToMyCart'
+import {addTicky} from './addTick'
 
 import '@babel/polyfill'
 import {signup} from './signup'
@@ -28,6 +30,9 @@ const signupForm2 = document.querySelector('.signup-form2');
 const userDataForm = document.querySelector('.form-user-data')
 const userPasswordForm = document.querySelector('.form-user-password')
 const bookBtn = document.getElementById('book-food')
+const addCart = document.getElementById('addCarty')
+const addTickk = document.getElementById('addTick')
+
 
 //VALUES
 
@@ -63,8 +68,19 @@ if(loginForm)
     const email = document.getElementById('email').value;
     
     const password = document.getElementById('password').value;
+    const choice = document.getElementById('choice');
+    const choice2 = document.getElementById('choice2')
+    if(choice.checked==true && choice2.checked==true)
+    {
+      login(email,password,'hola')
+    }
+    else if(choice.checked==true)
+    login(email,password,'Rest')
+    else if(choice2.checked==true)
+    login(email,password,'User')
     // const data=check(email)
-    login(email,password,data)
+    // console.log(choice)
+    // login(email,password,choice)
 })
 
 if(signupForm)
@@ -124,3 +140,42 @@ if (bookBtn){
     bookFood(foodId);
   });
 }
+
+
+if(addCart)
+  addEventListener('click',e=>{
+    // e.preventDefault();
+    // const restName=document.getElementById('restName').value
+
+    // const photo = document.getElementById('photo').value;
+    // const name = document.getElementById('name').value;
+    // const price = document.getElementById('price').value;
+    // const quantity = document.getElementById('quantity').value;
+    // console.log(restName)
+    const ids=e.target.dataset.foodId;
+    const myarray=ids.split(",")
+    console.log(myarray)
+
+    addToCart(myarray[0],myarray[1],myarray[2],myarray[3])
+    // console.log(e.target.dataset.foodId)
+  })
+
+  if(addTickk)
+  addEventListener('click',e=>{
+    // e.preventDefault();
+    // const restName=document.getElementById('restName').value
+
+    // const photo = document.getElementById('photo').value;
+    // const name = document.getElementById('name').value;
+    // const price = document.getElementById('price').value;
+    // const quantity = document.getElementById('quantity').value;
+    // console.log(restName)
+    const id=e.target.dataset.foodId;
+    const myarray=id.split(",")
+    // console.log(myarray)
+
+    addTicky(myarray[0],myarray[1])
+
+    // addTicky(id)
+    // console.log(e.target.dataset.foodId)
+  })
