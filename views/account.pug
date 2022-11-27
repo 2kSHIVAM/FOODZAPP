@@ -12,10 +12,10 @@ block content
             .user-view
                 nav.user-view__menu
                     ul.side-nav
-                        +navItem('#','Settings','settings',true)
+                        +navItem('/me-user','Settings','settings',true)
                         +navItem('/my-orders','My bookings','briefcase')
-                        +navItem('#','My reviews','star')
-                        +navItem('#','Billing','credit-card')
+                        +navItem('#','Future','star')
+                        +navItem('#','Future','credit-card')
 
 
                     - if(user.role==='admin')
