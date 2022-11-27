@@ -49,7 +49,6 @@ exports.signup = catchAsync(async(req,res,next)=>{
         email: req.body.email,
         password: req.body.password,
         phone: req.body.phone,
-        menu_category:req.body.menu_category,
         confirmPassword: req.body.confirmPassword,
         passwordChangedAt: req.body.passwordChangedAt,
         location: req.body.location,
@@ -59,7 +58,9 @@ exports.signup = catchAsync(async(req,res,next)=>{
         greeting:req.body.greeting,
         title:req.body.title,
         menu: req.body.menu,
-        ratingsAverage:req.body.ratingsAverage
+        role:req.body.role,
+        ratingsAverage:req.body.ratingsAverage,
+        choice:req.body.choice
         //we need to add the qr code here
     })
 

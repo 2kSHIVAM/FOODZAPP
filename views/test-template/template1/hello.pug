@@ -1,0 +1,119 @@
+doctype html
+html
+  head
+    title Grid Food Menu
+    // Google Font
+    link(href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap', rel='stylesheet')
+    // Stylesheet
+    link(rel='stylesheet', href='temp1_style.css.css')
+  body
+    .menu
+      .heading
+        h1 ROCCO&apos;S BISTRO
+        h3 &mdash; MENU &mdash;
+      .food-items
+        img(src='burger.jpg')
+        .details
+          .details-sub
+            h5 Smoky Hamburger
+            h5.price $8
+          p
+            | Lorem ipsum, dolor sit amet consectetur adipisicing elit reiciendis
+            | nam non quia! Earum eveniet minus. Facilis explicabo natus nihil
+            | voluptatem eveniet pariatur.
+          .wrapper
+            span.minus -
+            span.num 01
+            span.plus +
+      .food-items
+        img(src='chicken.jpeg')
+        .details
+          .details-sub
+            h5 Honey Garlic Chicken
+            h5.price $15
+          p
+            | Lorem ipsum, dolor sit amet consectetur adipisicing elit dolor sit
+            | amet consectetur adipisicing elit.
+          .wrapper
+            span.minus -
+            span.num 01
+            span.plus +
+      .food-items
+        img(src='soup.jpeg')
+        .details
+          .details-sub
+            h5 Manchow Soup
+            h5.price $8
+          p
+            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus
+            | quibusdam facilis, magni consectetur necessitatibus.
+          .wrapper
+            span.minus -
+            span.num 01
+            span.plus +
+      .food-items
+        img(src='Spaghetti.jpeg')
+        .details
+          .details-sub
+            h5 Basil Pesto Spaghetti
+            h5.price $12
+          p
+            | Lorem ipsum, dolor sit amet consectetur adipisicing elit lorem
+            | ipsum, dolor sit amet consectetur adipisicing elit
+          .wrapper
+            span.minus -
+            span.num 01
+            span.plus +
+      .food-items
+        img(src='salmon.jpeg')
+        .details
+          .details-sub
+            h5 Roast Salmon
+            h5.price $15
+          p Lorem ipsum, dolor sit amet consectetur adipisicing elit
+          .wrapper
+            span.minus -
+            span.num 01
+            span.plus +
+      .food-items
+        img(src='Sandwich.jpeg')
+        .details
+          .details-sub
+            h5 BBQ Sandwich
+            h5.price $10
+          p
+            | Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus
+            | reiciendis nam non quia! Earum eveniet quia minus nemo.
+          .wrapper
+            span.minus.button -
+            span.num 01
+            span.plus.button +
+    script.
+      var plus = document.getElementsByClassName("plus"),
+      minus = document.getElementsByClassName("minus"),
+      num = document.getElementsByClassName("num");
+      console.log(plus);
+      let a = 1;
+      for (var i = 0; i < plus.length; i++) {
+      let a = 1;
+      var inc = plus[i];
+      var dec = minus[i];
+      inc.addEventListener("click", function (event) {
+      var buttonClicked = event.target;
+      var input = buttonClicked.parentElement.children[2];
+      a++;
+      a = a < 10 ? "0" + a : a;
+      buttonClicked.parentElement.children[1].innerText = a;
+      console.log(a, buttonClicked);
+      });
+      dec.addEventListener("click", function (event) {
+      var buttonClicked = event.target;
+      var input = buttonClicked.parentElement.children[2];
+      if(a>1){
+      a--;
+      a = a < 10 ? "0" + a : a;
+      buttonClicked.parentElement.children[1].innerText = a;
+      console.log(a, buttonClicked);
+      }
+      });
+      }

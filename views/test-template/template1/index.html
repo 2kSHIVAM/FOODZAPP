@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grid Food Menu</title>
+    <!--Google Font-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"
+    />
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="temp1_style.css" />
+  </head>
+  <body>
+    <div class="menu">
+      <div class="heading">
+        <h1>ROCCO'S BISTRO</h1>
+        <h3>&mdash; MENU &mdash;</h3>
+      </div>
+      <div class="food-items">
+        <img src="burger.jpg" />
+        <div class="details">
+          <div class="details-sub">
+            <h5>Smoky Hamburger</h5>
+            <h5 class="price">$8</h5>
+          </div>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit reiciendis
+            nam non quia! Earum eveniet minus. Facilis explicabo natus nihil
+            voluptatem eveniet pariatur.
+          </p>
+          <div class="wrapper">
+            <span class="minus">-</span>
+            <span class="num">01</span>
+            <span class="plus">+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-items">
+        <img src="chicken.jpeg" />
+        <div class="details">
+          <div class="details-sub">
+            <h5>Honey Garlic Chicken</h5>
+            <h5 class="price">$15</h5>
+          </div>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit dolor sit
+            amet consectetur adipisicing elit.
+          </p>
+          <div class="wrapper">
+            <span class="minus">-</span>
+            <span class="num">01</span>
+            <span class="plus">+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-items">
+        <img src="soup.jpeg" />
+        <div class="details">
+          <div class="details-sub">
+            <h5>Manchow Soup</h5>
+            <h5 class="price">$8</h5>
+          </div>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus
+            quibusdam facilis, magni consectetur necessitatibus.
+          </p>
+          <div class="wrapper">
+            <span class="minus">-</span>
+            <span class="num">01</span>
+            <span class="plus">+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-items">
+        <img src="Spaghetti.jpeg" />
+        <div class="details">
+          <div class="details-sub">
+            <h5>Basil Pesto Spaghetti</h5>
+            <h5 class="price">$12</h5>
+          </div>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit lorem
+            ipsum, dolor sit amet consectetur adipisicing elit
+          </p>
+          <div class="wrapper">
+            <span class="minus">-</span>
+            <span class="num">01</span>
+            <span class="plus">+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-items">
+        <img src="salmon.jpeg" />
+        <div class="details">
+          <div class="details-sub">
+            <h5>Roast Salmon</h5>
+            <h5 class="price">$15</h5>
+          </div>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit</p>
+          <div class="wrapper">
+            <span class="minus">-</span>
+            <span class="num">01</span>
+            <span class="plus">+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-items">
+        <img src="Sandwich.jpeg" />
+        <div class="details">
+          <div class="details-sub">
+            <h5>BBQ Sandwich</h5>
+            <h5 class="price">$10</h5>
+          </div>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus
+            reiciendis nam non quia! Earum eveniet quia minus nemo.
+          </p>
+          <div class="wrapper">
+            <span class="minus button">-</span>
+            <span class="num">01</span>
+            <span class="plus button">+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var plus = document.getElementsByClassName("plus"),
+        minus = document.getElementsByClassName("minus"),
+        num = document.getElementsByClassName("num");
+      console.log(plus);
+      let a = 1;
+      for (var i = 0; i < plus.length; i++) {
+        let a = 1;
+        var inc = plus[i];
+        var dec = minus[i];
+        inc.addEventListener("click", function (event) {
+          var buttonClicked = event.target;
+          var input = buttonClicked.parentElement.children[2];
+          a++;
+          a = a < 10 ? "0" + a : a;
+          buttonClicked.parentElement.children[1].innerText = a;
+          console.log(a, buttonClicked);
+        });
+
+        dec.addEventListener("click", function (event) {
+          var buttonClicked = event.target;
+          var input = buttonClicked.parentElement.children[2];
+          if(a>1){
+            a--;
+          a = a < 10 ? "0" + a : a;
+          buttonClicked.parentElement.children[1].innerText = a;
+          console.log(a, buttonClicked);
+          }
+        });
+
+      }
+    </script>
+  </body>
+</html>

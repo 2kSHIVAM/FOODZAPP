@@ -4,7 +4,7 @@ import {addToCart} from './addToMyCart'
 import {addTicky} from './addTick'
 
 import '@babel/polyfill'
-import {signup} from './signup'
+import {signup,signupRest} from './signup'
 // import { displayMap } from './mapbox'
 import { updateSettings } from './updateSettings'
 import { bookFood } from './stripe'
@@ -86,13 +86,43 @@ if(loginForm)
 if(signupForm)
     addEventListener('submit',e=>{
     e.preventDefault();
+    if(data=='User')
+    {
     const name=document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const phone =document.getElementById('phone').value;
     const role = document.getElementById('role').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
-    signup(name,email,phone,role,password,confirmPassword,data);
+    signup(name,email,phone,role,password,confirmPassword);
+    }
+    else if(data=='Rest')
+    {
+      const name=document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone =document.getElementById('phone').value;
+      const role = document.getElementById('role').value;
+      const greeting = document.getElementById('greeting').value;
+      const title = document.getElementById('title').value;
+      const message = document.getElementById('message').value;
+      const city = document.getElementById('city').value;
+      const country = document.getElementById('country').value;
+
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      const choice1 = document.getElementById('choice1');
+      const choice2 = document.getElementById('choice2');
+      if(choice1.checked==true)
+      {
+        signupRest(name,email,phone,role,greeting,title,message,city,country,password,confirmPassword,"template1");
+      }
+      else if(choice2.checked==true){
+        signupRest(name,email,phone,role,greeting,title,message,city,country,password,confirmPassword,"template2");
+      }
+      // signup(name,email,phone,role,password,confirmPassword,data);
+  
+    }
 })
 
 if(logOutBtn) logOutBtn.addEventListener('click',logout);

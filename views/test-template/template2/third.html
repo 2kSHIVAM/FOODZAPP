@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="second.css"> -->
+    <link rel="stylesheet" href="second1.css">
+</head>
+<body>
+    <section class="food-area">
+        <div class="container">
+            <div class="title">
+                <p>famous for good food</p>
+                <h4>our menu</h4>
+            </div>
+            <div class="foods">
+                <div class="single-food">
+                    <div class="food-img">
+                        <img src="https://via.placeholder.com/400.pngC/O%20https://placeholder.com/" alt="">
+                        <h4>package 1</h4>
+                    </div>
+                    <ul class="food-list">
+                        <li>Fried Rice x 1Price: <span>250</span></li>
+                        <div class="wrapper">
+                            <span class="minus">-</span>
+                            <span class="num">01</span>
+                            <span class="plus">+</span>
+                          </div>
+                    </ul>
+                    <a href="">order now</a>
+                </div>
+                <div class="single-food">
+                    <div class="food-img">
+                        <img src="https://via.placeholder.com/400.pngC/O%20https://placeholder.com/" alt="">
+                        <h4>package 1</h4>
+                    </div>
+                    <ul class="food-list">
+                        <li>Fried Rice x 1Price: <span>90</span></li>
+                        <div class="wrapper">
+                            <span class="minus">-</span>
+                            <span class="num">01</span>
+                            <span class="plus">+</span>
+                          </div>
+                    </ul>
+                    <a href="">order now</a>
+                </div>
+                <div class="single-food">
+                    <div class="food-img">
+                        <img src="https://via.placeholder.com/400.pngC/O%20https://placeholder.com/" alt="">
+                        <h4>package 2</h4>
+                    </div>
+                    <ul class="food-list">
+                        <li>Salad x 1Price: <span>70</span></li>
+                        <div class="wrapper">
+                            <span class="minus">-</span>
+                            <span class="num">01</span>
+                            <span class="plus">+</span>
+                          </div>
+                    </ul>
+                    <a href="">order now</a>
+                </div>
+                <div class="single-food">
+                    <div class="food-img">
+                        <img src="https://via.placeholder.com/400.pngC/O%20https://placeholder.com/" alt="">
+                        <h4>package 3</h4>
+                    </div>
+                    <ul class="food-list">
+                        <li>Drinks 250ml x 1Price: <span>80</span></li>
+                        <div class="wrapper">
+                            <span class="minus">-</span>
+                            <span class="num">01</span>
+                            <span class="plus">+</span>
+                          </div>
+                    </ul>
+                    <a href="">order now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        var plus = document.getElementsByClassName("plus"),
+          minus = document.getElementsByClassName("minus"),
+          num = document.getElementsByClassName("num");
+        console.log(plus);
+        let a = 1;
+        for (var i = 0; i < plus.length; i++) {
+          let a = 1;
+          var inc = plus[i];
+          var dec = minus[i];
+          inc.addEventListener("click", function (event) {
+            var buttonClicked = event.target;
+            var input = buttonClicked.parentElement.children[2];
+            a++;
+            a = a < 10 ? "0" + a : a;
+            buttonClicked.parentElement.children[1].innerText = a;
+            console.log(a, buttonClicked);
+          });
+  
+          dec.addEventListener("click", function (event) {
+            var buttonClicked = event.target;
+            var input = buttonClicked.parentElement.children[2];
+            if(a>1){
+              a--;
+            a = a < 10 ? "0" + a : a;
+            buttonClicked.parentElement.children[1].innerText = a;
+            console.log(a, buttonClicked);
+            }
+          });
+  
+        }
+      </script>
+</body>
+</html>

@@ -41,19 +41,19 @@ block content
                         input#role.form__input(type='string', placeholder='eg: user', required, minlength='2')
                     .form__group
                         label.form__label(for='greeting') Greeting
-                        input#role.form__input(type='string', placeholder='eg: Hello there!!', required, minlength='2')
+                        input#greeting.form__input(type='string', placeholder='eg: Hello there!!', required, minlength='2')
                     .form__group
-                        label.form__label(for='role') Message
-                        input#role.form__input(type='string', placeholder='eg: To serve the best food', required, minlength='2')
+                        label.form__label(for='message') Message
+                        input#message.form__input(type='string', placeholder='eg: To serve the best food', required, minlength='2')
                     .form__group
-                        label.form__label(for='role') Title
-                        input#role.form__input(type='string', placeholder='eg: Best in town', required, minlength='2')
+                        label.form__label(for='title') Title
+                        input#title.form__input(type='string', placeholder='eg: Best in town', required, minlength='2')
                     .form__group
-                        label.form__label(for='role') City
-                        input#role.form__input(type='string', placeholder='eg: Lucknow', required, minlength='2')
+                        label.form__label(for='city') City
+                        input#city.form__input(type='string', placeholder='eg: Lucknow', required, minlength='2')
                     .form__group
-                        label.form__label(for='role') Country
-                        input#role.form__input(type='string', placeholder='eg: India', required, minlength='2')
+                        label.form__label(for='country') Country
+                        input#country.form__input(type='string', placeholder='eg: India', required, minlength='2')
                     .form__group.ma-bt-md 
                         label.form__label(for='password') Password
                         input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
@@ -62,11 +62,11 @@ block content
                         input#confirmPassword.form__input(type='password', placeholder='••••••••', required, minlength='8')
                     .form__group.ma-bt-md 
                         h6.heading-secondary.ma-bt-lg(for='choice') Choose Your Template
-                        label.form__label(for='choice') Template 1
-                        input#choice(type='checkbox', value='Template 1') 
-                        a(href='https://www.freecodecamp.org/', target='_blank') Test it
+                        label.form__label(for='choice1') Template 1
+                        input#choice1(type='checkbox', value='Template 1') 
+                        a(href='http://127.0.0.1:5501/views/test-template/template1/index.html', target='_blank' ,style='font-size:15px;')="    Test it"
                         label.form__label(for='choice2') Template 2
                         input#choice2(type='checkbox', value='Template 2')
-                        a(href='https://www.freecodecamp.org/', target='_blank') Test it
+                        a(href='http://127.0.0.1:5501/views/test-template/template2/third.html', target='_blank' ,style='font-size:15px;')="    Test it"
                     .form__group
                         button.btn.btn--green SignUp
