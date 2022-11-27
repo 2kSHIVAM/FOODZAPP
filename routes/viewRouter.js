@@ -23,6 +23,8 @@ router.get('/me-rest',rauthController.protect, viewController.getAccount);
 
 router.get('/my-orders',authController.protect, viewController.getMyOrders);
 router.get('/my-orders-rest',rauthController.protect, viewController.getMyOrderRest);
+router.get('/getQr',rauthController.protect, viewController.getMyQr);
+
 router.get('/cart',authController.protect,authController.isLoggedIn, viewController.cart);
 router.get('/user-placed-order',authController.protect,historyController.updateHistory,historyController.updateHistoryRest,viewController.getBillPage)
 router.get('/restaurant/:restName',authController.protect,authController.isLoggedIn,viewController.getMyRest);

@@ -1,0 +1,34 @@
+extends base
+
+mixin navItem(link,text,icon,active)
+    li(class=`${active?'side-nav--active':''}`)
+        a(href=link)
+            svg
+                use(xlink:href=`img/icons.svg#icon-${icon}`)
+            | #{text}
+block content
+    link(rel='stylesheet', href='/css/stylish.css')
+    //- link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/style1.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css')
+    // jQuery library
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+    // Latest compiled JavaScript
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js')
+
+    main.main
+        .user-view
+            nav.user-view__menu
+                ul.side-nav
+                    +navItem('/me-rest','Settings','settings')
+                    +navItem('/my-orders-rest','My bookings','briefcase')
+                    +navItem('signup2-menu','Make Your Menu','star')
+                    +navItem('/getQr','Get you QR code','credit-card',true)
+
+            .user-view__content
+                h2.heading-secondary.ma-bt-md Your QR code
+                br
+                img(src=`${data}`, alt='qrCode', width='200', height='200')
+                br
+                br
+                btn.btn-lg.btn-success(onclick='window.print()') Print QR

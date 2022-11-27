@@ -134,6 +134,7 @@ const restSchema= new mongoose.Schema({
 })
 restSchema.pre('save',async function(next){
     this.slug=slugify(this.name,{lower:true});
+    this.qr_code=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost:3000/restaurant/${this.slug}`
     next();
 })
 restSchema.pre('save', async function(next){

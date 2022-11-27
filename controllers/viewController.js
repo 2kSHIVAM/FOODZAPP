@@ -212,3 +212,15 @@ exports.getOverview = catchAsync(async(req,res)=>{
       finalPrice:newprice
     })
   })
+
+  exports.getMyQr=catchAsync(async(req,res) => {
+    const data=await Rest.find({_id:req.rest._id})
+    const ans=data[0];
+    // console.log(data.meals)
+    // console.log(data)    
+    console.log(ans)
+    res.status(200).render('getQr',{
+      title:"My qr",
+      data:ans.qr_code
+    })
+  })
