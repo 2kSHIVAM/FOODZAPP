@@ -7,21 +7,23 @@ body{
 .main{
     width: 100%;
     background: rgba(0,0,0,0.4);
-    height: 100vh;
+    height: 82vh;
+    padding: 0;
+    display: flex;
+    justify-items: center;
+    align-items: center;
 }
-
-
 
 .wrapper-over{
     background-image: url('food.jpg');
     background-position:center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 82vh;
 }
 
 .content-over{
-    backdrop-filter: blur(1px);
+    backdrop-filter: blur(2px);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -45,13 +47,14 @@ button{
     color: #fff;
     font-size: 18px;
     padding: 10px 25px;
-    border-radius: 6px;
-    transition: 0.5s all ease;
+    border-radius: 30px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 button:hover{
-    background:black;
-    color: red;
+    background:rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     
 }
 

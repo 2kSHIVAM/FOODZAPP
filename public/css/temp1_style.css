@@ -12,6 +12,8 @@ body{
     display: grid;
     grid-template-columns: repeat( auto-fit, minmax(350px,1fr));
     grid-gap: 20px 40px;
+    height: 82vh;
+    overflow-y: scroll;
 }
 .heading{
     background-color: #cb202d;

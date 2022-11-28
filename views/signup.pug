@@ -2,7 +2,7 @@ extends base
 
 block content
     main.main
-        .login-form
+        .signup-form
             h2.heading-secondary.ma-bt-lg Create new account
             form.form.form--signup
                 - if(data=='User')
@@ -24,7 +24,7 @@ block content
                     .form__group.ma-bt-md 
                         label.form__label(for='confirmPassword') Confirm Password
                         input#confirmPassword.form__input(type='password', placeholder='••••••••', required, minlength='8')
-                    .form__group
+                    .form__group.butn
                         button.btn.btn--green SignUp
                 - else if(data=='Rest')
                     .form__group
@@ -60,13 +60,14 @@ block content
                     .form__group.ma-bt-md 
                         label.form__label(for='confirmPassword') Confirm Password
                         input#confirmPassword.form__input(type='password', placeholder='••••••••', required, minlength='8')
-                    .form__group.ma-bt-md 
+                    .template_choice
                         h6.heading-secondary.ma-bt-lg(for='choice') Choose Your Template
-                        label.form__label(for='choice1') Template 1
-                        input#choice1(type='checkbox', value='Template 1') 
-                        a(href='http://127.0.0.1:5501/views/test-template/template1/index.html', target='_blank' ,style='font-size:15px;')="    Test it"
-                        label.form__label(for='choice2') Template 2
-                        input#choice2(type='checkbox', value='Template 2')
-                        a(href='http://127.0.0.1:5501/views/test-template/template2/third.html', target='_blank' ,style='font-size:15px;')="    Test it"
-                    .form__group
+                        .choices
+                            label.form__label(for='choice1') Template 1
+                            input#choice1(type='checkbox', value='Template 1') 
+                            a(href='http://127.0.0.1:5501/views/test-template/template1/index.html', target='_blank' ,style='font-size:15px;')="    Test it"
+                            label.form__label(for='choice2') Template 2
+                            input#choice2(type='checkbox', value='Template 2')
+                            a(href='http://127.0.0.1:5501/views/test-template/template2/third.html', target='_blank' ,style='font-size:15px;')="    Test it"
+                    .form__group.butn
                         button.btn.btn--green SignUp

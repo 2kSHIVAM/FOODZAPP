@@ -28,7 +28,9 @@ block content
             .user-view__content
                 h2.heading-secondary.ma-bt-md Your QR code
                 br
-                img(src=`${data}`, alt='qrCode', width='200', height='200')
+                div.divvy
+                    img(src=`${data}`, alt='qrCode', width='250', height='250')
                 br
                 br
-                btn.btn-lg.btn-success(onclick='window.print()') Print QR
+                div.divvy
+                    btn.btn-lg.btn-success(onclick='window.print()') Print QR
