@@ -29,8 +29,7 @@ router.get('/cart',authController.protect,authController.isLoggedIn, viewControl
 router.get('/user-placed-order',authController.protect,historyController.updateHistory,historyController.updateHistoryRest,viewController.getBillPage)
 router.get('/restaurant/:restName',authController.protect,authController.isLoggedIn,viewController.getMyRest);
 
+router.get('/manageMenu',rauthController.protect, viewController.manageMenu)
 // router.get('/tour/:slug_name', authController.isLoggedIn,viewController.getTour);
-
 // router.post('/submit-user-data',authController.protect, viewController.updateUserData)
-
 module.exports = router

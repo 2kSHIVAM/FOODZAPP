@@ -1,8 +1,8 @@
 import { login,logout } from './login_logout'
 import { signup2 } from './signupform2'
-import {addToCart} from './addToMyCart'
+import {addToCart,removeItem} from './cart'
 import {addTicky} from './addTick'
-
+import {deleteMeal} from './updateMenu.js'
 import '@babel/polyfill'
 import {signup,signupRest} from './signup'
 // import { displayMap } from './mapbox'
@@ -32,6 +32,10 @@ const userPasswordForm = document.querySelector('.form-user-password')
 const bookBtn = document.getElementById('book-food')
 const addCart = document.getElementById('addCarty')
 const addTickk = document.getElementById('addTick')
+const deleteBtn = document.getElementById('deleteMeal')
+const removeBtn = document.getElementById('removeItem')
+
+
 
 
 //VALUES
@@ -209,3 +213,21 @@ if(addCart)
     // addTicky(id)
     // console.log(e.target.dataset.foodId)
   })
+
+
+  if(deleteBtn)
+  addEventListener('click',e=>{
+    const ids=e.target.dataset.foodId;
+    const myarray=ids.split(",")
+    console.log(myarray)
+
+    deleteMeal(myarray[0],myarray[1],myarray[2])
+  })
+
+  if(removeBtn)
+  addEventListener('click',e=>{
+    const ids=e.target.dataset.foodId;
+    const myarray=ids.split(",")
+    removeItem(myarray[0],myarray[1])
+  })
+

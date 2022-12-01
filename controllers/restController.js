@@ -53,6 +53,30 @@ exports.updateMenu=catchAsync(async(req,res,next)=>{
 
 })
 
+
+exports.manageMenu=catchAsync(async(req,res,next)=>{
+    const rest=await Rest.findOne({_id:req.body.restId});
+    const menu=rest.menu;
+    let i;
+    for(i=0;i<menu.length;i++)
+    {
+        if(menu[i]._id==req.body.menuId)
+        break;
+    }
+    const meals =menu[i].meals;
+    // console.log(meals)
+    const filteredMeals = meals.filter((item)=>item.id !== req.body.mealId)
+    // console.log(filteredMeals)
+    menu[i].meals=filteredMeals
+    console.log(menu[i].meals)
+    await Rest.findByIdAndUpdate(req.body.restId,{menu:menu})
+    res.status(200).json({
+        status:"success"
+    })
+})
+
+
+
 exports.getRest=catchAsync(async(req,res,next)=>{
     const rest=await Rest.find({slug:req.params.slugi});
     if(!rest) 

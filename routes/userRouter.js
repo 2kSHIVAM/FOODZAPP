@@ -22,7 +22,7 @@ router.get('/myCart',authController.protect,cartController.getCart)
 router.delete('/emptyCart',authController.protect,cartController.emptyCart)
 router.post('/placeOrder',authController.protect,historyController.updateHistory,historyController.updateHistoryRest);
 router.get('/myOrders',authController.protect,historyController.showOrderHistory)
-
+router.post('/removeItems',authController.isLoggedIn,cartController.removeItems)
 router.post('/forgotPassword',authController.forgotPassword);
 // router.patch('/updatePassword',authController.protect,authController.updatePassword);// we have to make sure that the user is loggedin before he is attempting to change the password
 // router.patch('/resetPassword/:token',authController.resetPassword);

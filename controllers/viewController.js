@@ -201,16 +201,26 @@ exports.getOverview = catchAsync(async(req,res)=>{
     const data=await Cart.findOne({user:req.user})
     // console.log(data.meals)
     // console.log(data)
+    
+    if(data==null){
+    res.status(200).render('emptyCart',{
+      title:"My cart",
+    })
+    
+    }
+    else{
     const price = data.meals.map(el=>el.price*el.quantity)
     let newprice=0
     for(let i=0;i<price.length;i++)
     newprice=newprice+price[i]
-    
-    res.status(200).render('cart',{
-      title:"My cart",
-      data:data.meals,
-      finalPrice:newprice
-    })
+      res.status(200).render('cart',{
+        title:"My cart",
+        data:data.meals,
+        userId:req.user._id,
+        finalPrice:newprice
+      })
+  
+    }
   })
 
   exports.getMyQr=catchAsync(async(req,res) => {
@@ -224,3 +234,17 @@ exports.getOverview = catchAsync(async(req,res)=>{
       data:ans.qr_code
     })
   })
+
+  exports.manageMenu=catchAsync(async(req,res) => {
+    const data=await Rest.find({_id:req.rest._id})
+    const ans=data[0];
+    // console.log(data.meals)
+    // console.log(data)    
+    console.log(ans)
+    res.status(200).render('manageMenu',{
+      title:"Manage Menu",
+      data:ans.menu,
+      restId:ans._id
+    })
+  })
+

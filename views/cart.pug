@@ -13,7 +13,7 @@ block content
                                 .col-lg-3.col-md-12.mb-4.mb-lg-0
                                     // Image
                                     .bg-image.hover-overlay.hover-zoom.ripple.rounded(data-mdb-ripple-color='light')
-                                        img.w-100(src=`${item.meal_photo}`, alt='Blue Jeans Jacket')
+                                        img.w-100(src=`${item.meal_photo}`, alt='')
                                         a(href='#!')
                                             .mask(style='background-color: rgba(251, 251, 251, 0.2)')
                                     // Image
@@ -21,8 +21,8 @@ block content
                                     // Data
                                     p
                                         strong= `${item.name}`
-                                    p Color: blue
-                                    p Size: M
+                                    button.btn.btn--green.span-all-rows#removeItem(data-food-id=`${item._id},${userId}`) Remove!
+                                    //- p Size: M
 
                                     // Data
                                 .col-lg-4.col-md-6.mb-4.mb-lg-0

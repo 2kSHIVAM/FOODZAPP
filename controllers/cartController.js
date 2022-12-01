@@ -35,7 +35,18 @@ exports.addToCart=catchAsync(async(req,res)=>{
     {
         const id = ans._id
         const food=ans.meals
+        let k
+        for(k=0;k<food.length;k++)
+        {
+            if(food[k].name==m_name)
+            {
+                food[k].quantity+=1
+                break
+            }
+        }
+        if(k==food.length){
         food.push({"name":m_name,"price":m_price,"quantity":1,"meal_photo":m_photo})
+        }
         await Cart.findByIdAndUpdate({_id:id},{meals:food})
         res.status(200).json({
             status: 'success'
@@ -75,3 +86,17 @@ exports.emptyCart=catchAsync(async(req,res)=>{
         data:null
     })
 })
+
+exports.removeItems=catchAsync(async(req,res)=>{
+    const user=await User.findOne({_id:req.body.userId})
+    const cart = await Cart.findOne({user:user})
+    const meals=cart.meals
+    const id=cart._id
+    const filteredMeals = meals.filter((item)=>item.id !== req.body.mealId)
+    await Cart.findByIdAndUpdate(id,{meals:filteredMeals})
+    res.status(200).json({
+        status:"success"
+    })
+})
+
+
