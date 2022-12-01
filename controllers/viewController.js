@@ -156,15 +156,25 @@ exports.getOverview = catchAsync(async(req,res)=>{
     // const tourIDs = bookings.map(el => el.tour);
     // const tours = await Tour.find({ _id: { $in: tourIDs } });
     const data=await OrderHistory.find({user:req.user});
+    const data2=data[0].orders
     const restIDs = data[0].orders.map(el => el.rest);
-    const rests = await Rest.find({ _id: { $in: restIDs } });
-    const restName=rests.map(el=>el.name);
-    console.log(restIDs);
+    // const rests = await Rest.find({ _id: { $in: restIDs } });
+    let i
+    let rest=[]
+    for( i=0;i<restIDs.length;i++)
+    {
+      const restName=await Rest.findOne({_id:restIDs[i]})
+      rest.push(restName)
+    }
+    // console.log(rest)
+    // const restName=rests.map(el=>el.name);
+    // console.log(restIDs);
    
-   
+  //  console.log(data2)
     res.status(200).render('user_order', {
       title: 'My Orders',
-      data:rests
+      data:rest,
+      data2:data2
     });
   });
 
@@ -248,3 +258,74 @@ exports.getOverview = catchAsync(async(req,res)=>{
     })
   })
 
+
+
+
+
+
+  exports.getOrderDetails=catchAsync(async(req,res) => {
+    const data=await OrderHistory.findOne({user:req.user._id})
+    const id=req.params.id
+    const myarray=id.split("-");
+    // console.log(data.meals)
+    // console.log(data)    
+    // console.log(myarray[0])
+    // console.log(myarray[1])
+    let i
+    let j
+    let i1 
+    let j1
+    const orders=data.orders
+    const rest=await Rest.findOne({_id:myarray[0]})
+    // console.log(rest._id)
+
+    // console.log(orders[0].rest.toString()==rest._id.toString())
+    // for(i=0;i<orders.length;i++)
+    // console.log(orders[i].rest)
+    for(i=0;i<orders.length;i++)
+    {
+      if(orders[i].rest.toString()==rest._id.toString())
+      {
+        // if(orders[i].meals._id==myarray[1])
+        if(orders[i]._id==myarray[1])
+        {
+          break;
+        }
+      }
+    }
+    const menu=orders[i].meals
+    // console.log(orders[i].meals)
+    // console.log(data)
+    // for(i=0;i<orders.length;i++)
+    // {
+    //   if(orders[i].rest==myarray[0])
+    //   {
+    //     for(j=0;j<orders[i].meals.length;j++)
+    //     {
+    //       if(orders[i].meals[j]._id==myarray[1])
+    //       {
+    //         i1=i
+    //         j1=j
+    //         break;
+    //       }
+    //     }
+    //     // console.log(orders[i].rest)
+    //   }
+    // }
+    // console.log(orders[i1].meals[j1])
+    let k
+    let finalPrice=0
+    for(k=0;k<menu.length;k++){
+      finalPrice+=menu[k].price*menu[k].quantity
+    }
+
+    res.status(200).render('user_order_detail',{
+      title:"Details Page",
+      data:menu,
+      finalPrice:finalPrice
+      // data:ans.menu,
+      // restId:ans._id
+    })
+  })
+
+  

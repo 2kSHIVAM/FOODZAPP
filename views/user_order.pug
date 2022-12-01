@@ -28,22 +28,22 @@ block content
             .user-view__content
                 h2.heading-secondary.ma-bt-md Your order history
                 .card-container
-                    each rest in data
+                    each item,id in data2
                         .card
                             .card__header
                                 .card__picture
                                     .card__picture-overlay &nbsp;
-                                    img.card__picture-img(src=`img/to-rest/${rest.photo}`, alt='Tour 1')
+                                    img.card__picture-img(src=`img/to-rest/${data[id].photo}`, alt='')
                                 h3.heading-tertirary
-                                    span= rest.name
+                                    span= data[id].name
 
                             .card__details
-                                h4.card__sub-heading= `${rest.greeting}`
-                                p.card__text= `${rest.message}`
+                                h4.card__sub-heading= `${data[id].greeting}`
+                                p.card__text= `${data[id].message}`
                                 .card__data
                                     svg.card__icon
                                         use(xlink:href='img/icons.svg#icon-map-pin')
-                                    span= rest.city
+                                    span= data[id].city
                                 .card__data
                                     svg.card__icon
                                         use(xlink:href='img/icons.svg#icon-calendar')
@@ -51,14 +51,14 @@ block content
                                 .card__data
                                     svg.card__icon
                                         use(xlink:href='img/icons.svg#icon-flag')
-                                    span= rest.title
+                                    span= data[id].title
                                 .card__data
                                     svg.card__icon
                                         use(xlink:href='img/icons.svg#icon-user')
                                     p.card__ratings
-                                        span.card__footer-value= `${rest.ratingsAverage}`
+                                        span.card__footer-value= `${data[id].ratingsAverage}`
                                         span.card__footer-text rating (21)
 
                             .card__footer
                                 a.btn.btn--green.btn--small(href='#') Contact Us
-                                a.btn.btn--green.btn--small(href='#') Details
+                                a.btn.btn--green.btn--small(href=`/my-orders-details/${data[id]._id}-${item._id}`) Details

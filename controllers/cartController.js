@@ -92,11 +92,28 @@ exports.removeItems=catchAsync(async(req,res)=>{
     const cart = await Cart.findOne({user:user})
     const meals=cart.meals
     const id=cart._id
+    let i
+    for(i=0;i<meals.length;i++)
+    {
+        if(meals[i]._id==req.body.mealId)
+        break;
+    }
+    if(meals[i].quantity>1)
+    {
+        meals[i].quantity-=1
+        await Cart.findByIdAndUpdate(id,{meals:meals})
+        res.status(200).json({
+        status:"success"
+    })
+    }
+    else{
     const filteredMeals = meals.filter((item)=>item.id !== req.body.mealId)
     await Cart.findByIdAndUpdate(id,{meals:filteredMeals})
     res.status(200).json({
         status:"success"
     })
+    }
+    
 })
 
 

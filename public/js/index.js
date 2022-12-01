@@ -8,6 +8,7 @@ import {signup,signupRest} from './signup'
 // import { displayMap } from './mapbox'
 import { updateSettings } from './updateSettings'
 import { bookFood } from './stripe'
+import {viewDetailPage} from './viewDetailUser'
 // import { bookTour } from './stripe';
 const User = require('../../models/userModel');
 const Rest = require('../../models/restModel');
@@ -34,7 +35,7 @@ const addCart = document.getElementById('addCarty')
 const addTickk = document.getElementById('addTick')
 const deleteBtn = document.getElementById('deleteMeal')
 const removeBtn = document.getElementById('removeItem')
-
+const viewDetailBtn = document.getElementById('viewDetail')
 
 
 
@@ -229,5 +230,14 @@ if(addCart)
     const ids=e.target.dataset.foodId;
     const myarray=ids.split(",")
     removeItem(myarray[0],myarray[1])
+  })
+
+
+  if(viewDetailBtn)
+  addEventListener('click',e=>{
+    const id=e.target.dataset.foodId;
+    // console.log(id)
+    viewDetailPage(id)
+    // removeItem(myarray[0],myarray[1])
   })
 
