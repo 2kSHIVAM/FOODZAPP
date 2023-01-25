@@ -1,6 +1,9 @@
 body{
-    background: #F4F7FD;
-    margin-top:20px;
+  font-family: "Lato",sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
 }
 
 .card-margin {
@@ -18,27 +21,22 @@ body{
     -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
 }
 .card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    /* background-color: #ffffff; */
-    background-clip: border-box;
-    border: 1px solid #e6e4e9;
-    border-radius: 20px;
-    /* background-size: auto; */
-    /* background-size: 50px 50px;
-    background-repeat: repeat;
-    background-image: url('./../../views/green_tick.png'); */
-    /* background-color: red; */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  word-wrap: break-word;
+  /* background-color: #ffffff; */
+  background-clip: border-box;
+  /* border: 1px solid #e6e4e9; */
+  border-radius: 20px;
+  /* background-size: auto; */
+  /* background-color: red; */
+  box-shadow: 10px 10px 25px rgb(0 0 0 / 40%);
 }
 .img-tick{
   height: 3.5rem;
     width: 3.5rem;
-    /* justify-content: center; */
-    margin-left: 100px;
-    margin-top:10px
 }
 .card .card-header.no-border {
     border: 0;
@@ -61,6 +59,7 @@ body{
 .widget-49 .widget-49-title-wrapper {
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 .widget-49 .widget-49-title-wrapper .widget-49-date-primary {
@@ -68,21 +67,22 @@ body{
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #edf1fc;
+  /* background-image: linear-gradient(to right bottom, #ff4801, #98069a); */
+  background-color: #ff4801;
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
 }
 
 .widget-49 .widget-49-title-wrapper .widget-49-date-primary .widget-49-date-day {
-  color: #4e73e5;
+  color: #ffffff;
   font-weight: 500;
   font-size: 1.5rem;
   line-height: 1;
 }
 
 .widget-49 .widget-49-title-wrapper .widget-49-date-primary .widget-49-date-month {
-  color: #4e73e5;
+  color: #ffffff;
   line-height: 1;
   font-size: 1rem;
   text-transform: uppercase;
@@ -297,22 +297,26 @@ body{
 .widget-49 .widget-49-title-wrapper .widget-49-meeting-info .widget-49-pro-title {
   color: #3c4142;
   font-size: 14px;
+  font-weight: 400;
 }
 
 .widget-49 .widget-49-title-wrapper .widget-49-meeting-info .widget-49-meeting-time {
   color: #B1BAC5;
   font-size: 13px;
+  font-weight: 400;
 }
 
 .widget-49 .widget-49-meeting-points {
   font-weight: 400;
-  font-size: 13px;
-  margin-top: .5rem;
+  font-size: 15px;
+  margin: 1.5rem 0rem;
+  padding: 0px 43px;
 }
 
 .widget-49 .widget-49-meeting-points .widget-49-meeting-item {
   display: list-item;
   color: #727686;
+  margin-bottom: 3px;
 }
 
 .widget-49 .widget-49-meeting-points .widget-49-meeting-item span {

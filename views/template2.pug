@@ -18,9 +18,9 @@ block content
                                 li#name= `${meal.meal_name}`
                                     span#price= `${meal.price}`
 
-                                .wrapper
-                                    span.minus -
-                                    span.num#quantity 01
-                                    span.plus +
+                                //- .wrapper
+                                //-     span.minus -
+                                //-     span.num#quantity 01
+                                //-     span.plus +
                             .form__group
                                 button.btn.btn--green#addCarty(data-food-id=`${meal._id},${item._id},${data._id},${user._id}`) Add to cart

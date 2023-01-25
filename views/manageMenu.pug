@@ -8,9 +8,7 @@ mixin navItem(link,text,icon,active)
             | #{text}
 block content
     link(rel='stylesheet', href='/css/stylish.css')
-    //- link(rel='stylesheet', href='/css/style.css')
     link(rel='stylesheet', href='/css/style1.css')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css')
     link(rel="stylesheet", href="/css/menuManage.css")
 
     main.main
@@ -24,126 +22,18 @@ block content
                     +navItem('/getQr','Get you QR code','credit-card')
 
             .user-view__content
-                .container
-                    h1 Manage Your Menu 
-                        .cards-container
-                            each item in data
-                                each meal in item.meals
-                                    figure.card
-                                        .card__emoji 
-                                            img(src=`${meal.meal_photo}`)
-                                        .card__title-box
-                                            h2.card__title=`${meal.meal_name}`
-                                        .card__details
-                                            //- .card__detail-box
-                                            //-     h6.card__detail.card__detail--organic Organic!
-                                            //- .card__detail-box
-                                            //-     h6.card__detail 4 &#x1F951; per &#x1F4E6;
-                                            .card__detail-box
-                                                h6.card__detail.meal-price= `₹${meal.price}`
-                                        .card__details
-                                            button.btn.btn--green.span-all-rows#deleteMeal(data-food-id=`${meal._id},${item._id},${restId}`) Delete!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//- doctype html
-//- html(lang='en')
-//-     head
-//-         meta(charset='UTF-8')
-//-         meta(name='viewport', content='width=device-width, initial-scale=1.0')
-//-         meta(http-equiv='X-UA-Compatible', content='ie=edge')
-//-         link(href='https://fonts.googleapis.com/css?family=Megrim|Nunito+Sans:400,900', rel='stylesheet')
-//-         link(rel='icon', href='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/155/ear-of-maize_1f33d.png')
-//-         link(rel="stylesheet", href="/css/menuManage.css")
-
-//-         title Manage Menu
-
-//-     body
-//-         .container
-//-             h1 &#x1F33D; Manage Your Menu &#x1F966;
-//-                 .cards-container
-//-                     each item in data
-//-                         each meal in item.meals
-//-                             figure.card
-//-                                 .card__emoji 
-//-                                     img(src=`${meal.meal_photo}`)
-//-                                 .card__title-box
-//-                                     h2.card__title=`${meal.meal_name}`
-//-                                 .card__details
-//-                                     //- .card__detail-box
-//-                                     //-     h6.card__detail.card__detail--organic Organic!
-//-                                     //- .card__detail-box
-//-                                     //-     h6.card__detail 4 &#x1F951; per &#x1F4E6;
-//-                                     .card__detail-box
-//-                                         h6.card__detail= `${meal.price}`
-//-                                 a.card__link(href='#')
-//-                                     span
-//-                                         | Delete 
-//-                                         i.emoji-right &#x1F449;
-//-                 //- figure.card
-                //-     .card__emoji 
-                //-     .card__title-box
-                //-         h2.card__title Goat and Sheep Cheese
-                //-     .card__details
-                //-         .card__detail-box
-                //-             h6.card__detail 250g per &#x1F4E6;
-                //-         .card__detail-box
-                //-             h6.card__detail.card__detail--price 5.00&euro;
-                //-     a.card__link(href='#')
-                //-         span
-                //-             | Detail 
-                //-             i.emoji-right &#x1F449;
-                //- figure.card
-                //-     .card__emoji &#x1F966;&#x1F966;
-                //-     .card__title-box
-                //-         h2.card__title Apollo Broccoli
-                //-     .card__details
-                //-         .card__detail-box
-                //-             h6.card__detail.card__detail--organic Organic!
-                //-         .card__detail-box
-                //-             h6.card__detail 3 &#x1F966; per &#x1F4E6;
-                //-         .card__detail-box
-                //-             h6.card__detail.card__detail--price 5.50&euro;
-                //-     a.card__link(href='#')
-                //-         span
-                //-             | Detail 
-                //-             i.emoji-right &#x1F449;
-                //- figure.card
-                //-     .card__emoji &#x1F955;&#x1F955;
-                //-     .card__title-box
-                //-         h2.card__title Baby Carrots
-                //-     .card__details
-                //-         .card__detail-box
-                //-             h6.card__detail.card__detail--organic Organic!
-                //-         .card__detail-box
-                //-             h6.card__detail 20 &#x1F955; per &#x1F4E6;
-                //-         .card__detail-box
-                //-             h6.card__detail.card__detail--price 3.00&euro;
-                //-     a.card__link(href='#')
-                //-         span
-                //-             | Detail 
-                //-             i.emoji-right &#x1F449;
-                //- figure.card
-                //-     .card__emoji &#x1F33D;&#x1F33D;
-                //-     .card__title-box
-                //-         h2.card__title Sweet Corncobs
-                //-     .card__details
-                //-         .card__detail-box
-                //-             h6.card__detail 2 &#x1F33D; per &#x1F4E6;
-                //-         .card__detail-box
-                //-             h6.card__detail.card__detail--price 2.00&euro;
-                //-     a.card__link(href='#')
-                //-         span
-                //-             | Detail 
-                //-             i.emoji-right &#x1F449;
+                h2.heading-secondary.ma-bt-md(style="margin-top: 0;") Manage Your Menu 
+                .cards-container
+                    each item in data
+                        each meal in item.meals
+                            figure.card
+                                .card__emoji(style="display: flex;justify-content: center;")
+                                    img(src=`${meal.meal_photo}`)
+                                .card__options
+                                    .card__title-box
+                                        h2.card__title=`${meal.meal_name}`
+                                    .card__details
+                                        .card__detail-box
+                                            h6.card__detail.meal-price= `₹${meal.price}`
+                                        .card__button
+                                            button.btn.btn--green#deleteMeal(data-food-id=`${meal._id},${item._id},${restId}`) Delete

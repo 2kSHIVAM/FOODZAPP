@@ -91,7 +91,7 @@ if(loginForm)
 if(signupForm)
     addEventListener('submit',e=>{
     e.preventDefault();
-    if(data=='User')
+    if(data==='User')
     {
     const name=document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -101,7 +101,7 @@ if(signupForm)
     const confirmPassword = document.getElementById('confirmPassword').value;
     signup(name,email,phone,role,password,confirmPassword);
     }
-    else if(data=='Rest')
+    else if(data==='Rest')
     {
       const name=document.getElementById('name').value;
       const email = document.getElementById('email').value;

@@ -26,61 +26,41 @@ block content
                     +navItem('/manageMenu','Update Your Menu','star')
                     +navItem('/getQr','Get you QR code','credit-card')
 
-            .user-view__content
-                .login-form
-                    .signup-form2
-                        link#bootstrap-css(href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css', rel='stylesheet')
-                        script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js')
+            .user-view__content(style="display: flex;justify-content: center;align-items: center;")
+                .login-form(style="overflow: hidden;")
+                    .signup-form2(style="style=align-items: center;display: flex;flex-direction: column;")
                         script(src='//code.jquery.com/jquery-1.11.1.min.js')
                         //- script(src='/css/kl.js')
-                        h2.heading-secondary.ma-bt-lg Make Your Menu
-                        form.form.form--signup
-                            .col-xs-12
-                                .col-md-12
-                                    h3  Add Menu
-                                    
-                                    #field
-                                        #field0                                    
-                                            .form-group
-                                                label.col-md-4.control-label(for='action_heading') Category
-                                                .col-md-6
-                                                    input#category_name.form-control.input-md(name='action_heading', type='text', placeholder='eg: pizza')
-                                                    br
-                                            br
-                                            br
-                                            br
-                                            // Text input
+                        h2.heading-secondary(style="margin: 0;") Make Your Menu
+                        form.form.form--signup(style="display: flex;align-items: center;justify-content: center;flex-direction: column;")
+                            h2.heading-secondary(style="margin: 0;padding: 20px; margin-bottom:10px")  Add Item
+                            #field
+                                #field0(style="display: flex;flex-direction: column;gap:5px")                                    
+                                    .form-group(style="align-items: center;justify-content: center;display: flex;")
+                                        label.col-md-4.control-label(for='action_heading') Category
+                                        .col-md-6
+                                            input#category_name.form-control.input-md(name='action_heading', type='text', placeholder='eg: pizza' style="border-radius: 20px;")
+                                    // Text input
 
-                                            .form-group
-                                                label.col-md-4.control-label(for='action_name') Meal Name
-                                                .col-md-6
-                                                    input#meal_name.form-control.input-md(name='action_name', type='text', placeholder='eg: peppy paneer')
-                                            br
-                                            br
-                                            // Text input
-                                            .form-group
-                                                label.col-md-4.control-label(for='action_price') Meal Price
-                                                .col-md-6
-                                                    input#meal_price.form-control.input-md(name='action_price', type='number', placeholder='eg: 451')
-                                                    br
-                                            br
-                                            br
-                                            // File Button
-                                            .form-group
-                                                label.col-md-4.control-label(for='action_photo') Meal Photo
-                                                .col-md-6
-                                                    input#meal_photo.form-control.input-md(type='text', name='action_photo',placeholder='eg: link')
-                                                    #action_jsondisplay
-                                                    br
-                                            br
-                                            br
-                                    // Button
-                                    br
-                                    br
-                                    .form-group
-                                        .col-md-4
-                                            .form__group
+                                    .form-group(style="align-items: center;justify-content: center;display: flex;")
+                                        label.col-md-4.control-label(for='action_name') Meal Name
+                                        .col-md-6
+                                            input#meal_name.form-control.input-md(name='action_name', type='text', placeholder='eg: peppy paneer' style="border-radius: 20px;")
 
-                                                button.btn.btn--green Submit
-                                    br
-                                    br
+                                    // Text input
+                                    .form-group(style="align-items: center;justify-content: center;display: flex;")
+                                        label.col-md-4.control-label(for='action_price') Meal Price
+                                        .col-md-6
+                                            input#meal_price.form-control.input-md(name='action_price', type='number', placeholder='eg: 451' style="border-radius: 20px;")
+
+                                    // File Button
+                                    .form-group(style="align-items: center;justify-content: center;display: flex;")
+                                        label.col-md-4.control-label(for='action_photo') Meal Photo
+                                        .col-md-6
+                                            input#meal_photo.form-control.input-md(type='text', name='action_photo',placeholder='eg: link' style="border-radius: 20px;")
+                                            #action_jsondisplay
+
+                            // Button
+
+                            .form-group(style="margin-top: 20px;")
+                                button.btn.btn--green(style="border-radius: 30px;font-size: 20px;padding: 10px;width: 125px;") Submit

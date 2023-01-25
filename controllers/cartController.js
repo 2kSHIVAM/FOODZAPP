@@ -104,7 +104,13 @@ exports.removeItems=catchAsync(async(req,res)=>{
         await Cart.findByIdAndUpdate(id,{meals:meals})
         res.status(200).json({
         status:"success"
-    })
+    })}
+    else if(i==0&&meals[i].quantity==1&&meals.length==1)
+    {
+        await Cart.findByIdAndDelete(id);
+        res.status(200).json({
+            status:"success"
+        })
     }
     else{
     const filteredMeals = meals.filter((item)=>item.id !== req.body.mealId)
@@ -115,5 +121,3 @@ exports.removeItems=catchAsync(async(req,res)=>{
     }
     
 })
-
-

@@ -27,38 +27,31 @@ block content
                     +navItem('/getQr','Get you QR code','credit-card')
 
             .user-view__content
-                h2.heading-secondary.ma-bt-md Your previous orders
-                //- WITHOUT API
-                //- form.form.form-user-data(action='/submit-user-data',method='POST')
-
-                //- WITH API
+                h2.heading-secondary.ma-bt-md(style="margin-top: 0;") Your previous orders
                 -  function editItem(s) { s==true};
-                    .container
-                        .row
-                            .mody
-                                each item,id in data
-                                    .col-lg-4
-                                        .card.card-margin
-                                            .card-header.no-border
-                                                h5.card-title= `${item.name}`
+                    .card-container
+                        each item,id in data
+                            .card(style="flex-direction: column;justify-content: space-evenly;height: 275px;")
+                                .card-header.no-border(style="justify-content: center;padding: 15px;")
+                                    h5.card-title(style="font-size: 20px;color: #ff4802")= `${item.name}`
 
-                                            .card-body.pt-0
-                                                .widget-49
-                                                    .widget-49-title-wrapper
-                                                        .widget-49-date-primary
-                                                            span.widget-49-date-day 09
-                                                            span.widget-49-date-month apr
-                                                        .widget-49-meeting-info
-                                                            span.widget-49-pro-title= `TOKEN: ${result[id]._id}`
-                                                            span.widget-49-meeting-time 12:00 to 13.30 Hrs
-                                                    ol.widget-49-meeting-points
-                                                        li.widget-49-meeting-item
-                                                            span= `${item.email}`
-                                                        li.widget-49-meeting-item
-                                                            span= `PHONE: ${item.phone}`
-                                                        - if(result[id].delivered==true)
-                                                            img.img-tick(src="https://tse3.mm.bing.net/th?id=OIP.GxSdgZx4VkM4ZHcxx6JwrwHaGb&pid=Api&P=0")
-                                                        - else 
-                                                            input.btn.btn-primary#addTick(type='button' value='Delivered ?' data-food-id=`${result[id]._id},${restId}`)
-                                                    .widget-49-meeting-action
-                                                        a.btn.btn-sm.btn-flash-border-primary(href='#') View All
+                                .card-body
+                                    .widget-49
+                                        .widget-49-title-wrapper
+                                            .widget-49-date-primary
+                                                span.widget-49-date-day 03
+                                                span.widget-49-date-month dec
+                                            .widget-49-meeting-info
+                                                span.widget-49-pro-title= `TOKEN: ${result[id]._id}`
+                                                span.widget-49-meeting-time 12:00 to 13.30 Hrs
+                                        ol.widget-49-meeting-points
+                                            li.widget-49-meeting-item
+                                                span= `${item.email}`
+                                            li.widget-49-meeting-item
+                                                span= `PHONE: ${item.phone}`
+                                        .widget-49-meeting-action(style="display: flex;flex-direction: row;justify-content: space-evenly;margin-top: 25px;align-items: center;")
+                                            - if(result[id].delivered==true)
+                                                img.img-tick(src="https://tse3.mm.bing.net/th?id=OIP.GxSdgZx4VkM4ZHcxx6JwrwHaGb&pid=Api&P=0")
+                                            - else 
+                                                input.btn.btn-primary#addTick(type='button' value='Delivered ?' data-food-id=`${result[id]._id},${restId}` style="margin-top: 0;height: 52px;width: 131px;border-radius: 28px;background: #ff4802;color: white;font-size: 1.5rem;")
+                                            a.btn.btn--green.btn--small(href=`/my-orders-details-rest/${result[id]._id}-${restId}`) Details

@@ -2,7 +2,6 @@ extends base
 
 block content
     main.main
-        .error
-            .error__title
-                    h2.heading-secondary.heading-secondary--error Uh oh! Your cart is empty!   
-                    h2.error__emoji 😢 🤯
+        .error__title(style="display: flex;flex-direction: column;align-items: center;margin-right: 200px;")
+            h2.heading-secondary.heading-secondary--error(style="width: 400px;text-align: center;color: #fda00b;font-size: 100px;") Uh oh! Your cart is empty!   
+            h2.error__emoji 😢 🤯

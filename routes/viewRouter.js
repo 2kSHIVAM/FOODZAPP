@@ -30,6 +30,7 @@ router.get('/user-placed-order',authController.protect,historyController.updateH
 router.get('/restaurant/:restName',authController.protect,authController.isLoggedIn,viewController.getMyRest);
 
 router.get('/my-orders-details/:id',authController.protect,authController.isLoggedIn,viewController.getOrderDetails)
+router.get('/my-orders-details-rest/:id',rauthController.protect,rauthController.isLoggedIn,viewController.getOrderDetailsRest)
 
 router.get('/manageMenu',rauthController.protect, viewController.manageMenu)
 // router.get('/tour/:slug_name', authController.isLoggedIn,viewController.getTour);

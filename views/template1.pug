@@ -3,28 +3,31 @@ block content
     link(href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap', rel='stylesheet')
     // Stylesheet
     link(rel='stylesheet', href='/css/temp1_style.css')
-    .menu.menu--page
-        .heading
+    .heading
             h1#restName= `${data.name}`
             h3  MENU 
+    .menu.menu--page
         each item in data.menu
             each meal in item.meals
                 .food-items
-                    img(src=`${meal.meal_photo}`)
-                    .details
-                        .details-sub
-                            h5= `${meal.meal_name}`
-                            h5.price= `${meal.price}`
-                        p
-                            | Lorem ipsum, dolor sit amet consectetur adipisicing elit reiciendis
-                            | nam non quia! Earum eveniet minus. Facilis explicabo natus nihil
-                            | voluptatem eveniet pariatur.
-                        .wrapper
-                            span.minus -
-                            span.num 00
-                            span.plus.button +
+                    .desc
+                        .img_container
+                            img(src=`${meal.meal_photo}`)
+                        .details
+                            .details-sub
+                                h5= `${meal.meal_name}`
+                                h5.price= `${meal.price}`
+                            p
+                                | Lorem ipsum, dolor sit amet consectetur adipisicing elit reiciendis
+                                | nam non quia! Earum eveniet minus. Facilis explicabo natus nihil
+                                | voluptatem eveniet pariatur.
+                    .quant   
+                        //- .wrapper
+                        //-     span.minus -
+                        //-     span.num 00
+                        //-     span.plus.button +
                         .form__group
-                                button.btn.btn--green#addCarty(data-food-id=`${meal._id},${item._id},${data._id},${user._id}`) Add to cart
+                                button.btn.btn--green#addCarty(style = "font-size: 13px;font-weight: 600;height: 45px;padding: 10px 15px;width: 125px")(data-food-id=`${meal._id},${item._id},${data._id},${user._id}`) Add to cart
     script.
         var plus = document.getElementsByClassName("plus"),
         minus = document.getElementsByClassName("minus"),

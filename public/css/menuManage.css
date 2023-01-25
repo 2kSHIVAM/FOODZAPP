@@ -17,17 +17,13 @@ html {
   font-family: 'Nunito Sans', sans-serif;
   color: #555;
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #9be15d, #00e3ae);
+  /* background: linear-gradient(to bottom right, #9be15d, #00e3ae); */
 }
 
 h1 {
-  font-family: 'Megrim', sans-serif;
-  font-size: 6rem;
   color: white;
-  transform: skewY(-5deg);
   text-align: center;
   position: relative;
-  word-spacing: 3px;
 }
 
 h1::before {
@@ -50,48 +46,73 @@ h1::before {
 }
 
 .cards-container {
-  margin-top: 8rem;
+  max-width: 100%;
+  margin: 60px;
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-gap: 50px 25px;
 }
 .meal-price{
     color:black
 }
 .card {
-  background: white;
-  box-shadow: 0 2rem 6rem 1rem rgba(0, 0, 0, 0.15);
-  margin-bottom: 5rem;
-  transform: skewX(-20deg);
+  position: relative;
   display: flex;
-  transition: all 0.5s;
+  flex-direction: column;
+  width: 300px;
+  height: 300px;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border-radius: 20px;
+  box-shadow: 10px 10px 15px rgb(0 0 0 / 60%);
 }
 
-img {
-    display: flex;
-    width:200px;
-    height:100px;
+.card__emoji{
+  height: 60%;
+}
+
+.card__options{
+  height: 40%;
+  background: linear-gradient(to right, #ff4800eb, #ca1f6fe8);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.card img {
+    height: 100%;
+    width: 100%;
+}
+
+.card button{
+  background-color: #ffffff;
+    color: #ff4800;
+    font-weight: 600;
 }
 
 .card__title-box {
-  background: linear-gradient(to bottom, #9be15d, #00e3ae);
   margin-right: auto;
   display: flex;
   align-items: center;
-  padding: 0 3rem;
+  justify-content: center;
+  width: 100%;
+  padding: 5px 5px;
 }
 
 .card__title {
-  font-family: 'Megrim', sans-serif;
+  /* font-family: 'Megrim', sans-serif; */
   color: white;
-  font-size: 3.25rem;
-  transform: skewX(20deg);
+  font-size: 20px;
 }
 
 .card__details {
   display: flex;
+  justify-content: space-between;
+  padding-left: 55px;
 }
 
 .card__detail-box {
   align-self: stretch;
-  border-right: 1px solid #ddd;
   display: flex;
   align-items: center;
 }
@@ -101,10 +122,8 @@ img {
 }
 
 .card__detail {
-  font-weight: 400;
-  font-size: 1.8rem;
-  transform: skewX(20deg);
-  padding: 1.75rem;
+  font-size: 25px;
+  color: white;
 }
 
 .card__detail--organic {
@@ -148,10 +167,10 @@ img {
   transform: skewX(20deg);
 }
 
-.card:hover {
+/* .card:hover {
   transform: skewX(-20deg) scale(1.08);
   box-shadow: 0 3rem 8rem 2rem rgba(0, 0, 0, 0.15);
-}
+} */
 
 .emoji-left {
   font-size: 2rem;

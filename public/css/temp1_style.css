@@ -5,21 +5,21 @@
 }
 body{
     background-color: #f3f3f3;
-    font-family: 'Poppins',sans-serif;
 }
 .menu{
-    padding: 0;
+    padding: 30px;
+    padding-top: 50px;
     display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(350px,1fr));
-    grid-gap: 20px 40px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 40px;
     height: 82vh;
     overflow-y: scroll;
 }
 .heading{
     background-color: #cb202d;
     color: #ffffff;
-    margin-bottom: 30px;
-    padding: 120px 0 30px 0;
+    /* margin-bottom: 30px; */
+    padding: 10px 0 10px 0;
     grid-column: 1/-1;
     text-align: center;
 }
@@ -35,12 +35,14 @@ body{
     letter-spacing: 5px;
 }
 .food-items{
-    display: grid;
+    display: flex;
+    flex-direction: column;
     position: relative;
-    grid-template-rows: auto 1fr;
+    width: 320px;
+    height: 410px;
     border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    margin: 0 20px;
+    box-shadow: 10px 10px 25px rgb(0 0 0 / 40%);
+    justify-content: space-between;
 }
 .food-items img{
     position: relative;
@@ -49,10 +51,9 @@ body{
 }
 
 .details{
-    padding: 20px 10px;
-    display: grid;
-    grid-template-rows: auto 1fr 50px;
-    grid-row-gap: 15px;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
 }
 .details-sub{
     display: grid;
@@ -71,22 +72,21 @@ body{
     line-height: 28px;
     font-weight: 400;
     align-self: stretch;
+    margin-bottom: 0;
 }
-.details>button{
-    background-color: #cb202d;
-    border: none;
-    color: #ffffff;
-    font-size: 16px;
+.quant .btn{
+    font-size: 13px;
     font-weight: 600;
-    border-radius: 5px;
-    width: 180px;
+    height: 45px;
+    padding: 10px 15px;
+    width: 125px;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
 }
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: ' Poppins' ,sans-serif;
 }
 body{
     height: 100vh;
@@ -98,14 +98,14 @@ body{
 }
 
 .wrapper{
-    height: 60px;
-    min-width: 190px;
+    width: 125px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #FFF;
-    border-radius: 12px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    border-radius: 25px;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
 
 }
 
@@ -117,8 +117,19 @@ body{
     cursor: pointer;
 }
 .wrapper span.num{
-    font-size: 25px;
-    border-right: 2px solid rgba(0,0,0,0.2);
-    border-left: 2px solid rgba(0,0,0,0.2);
+    font-size: 15px;
+    border-right: 1px solid rgba(0,0,0,0.2);
+    border-left: 1px solid rgba(0,0,0,0.2);
     pointer-events: none;
+}
+
+
+.quant{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    padding-bottom: 25px;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 0px;
 }

@@ -77,7 +77,7 @@ exports.updateMe=catchAsync(async(req,res,next)=>{
     runValidators:true
   })
   res.status(200).json({
-    message:"success",
+    status:"success",
     user:updatedUser
   })
 // console.log("yos")

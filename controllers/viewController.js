@@ -223,11 +223,19 @@ exports.getOverview = catchAsync(async(req,res)=>{
     let newprice=0
     for(let i=0;i<price.length;i++)
     newprice=newprice+price[i]
+    var tax=newprice*0.08
+
+    var pfprice=tax+newprice
+    pfprice=pfprice.toFixed(2)
+    tax=tax.toFixed(2)
+    // ffprice=ffprice.toFixed(2)
       res.status(200).render('cart',{
         title:"My cart",
         data:data.meals,
         userId:req.user._id,
-        finalPrice:newprice
+        finalPrice:newprice,
+        tax:tax,
+        pfprice:pfprice
       })
   
     }
@@ -294,38 +302,66 @@ exports.getOverview = catchAsync(async(req,res)=>{
       }
     }
     const menu=orders[i].meals
-    // console.log(orders[i].meals)
-    // console.log(data)
-    // for(i=0;i<orders.length;i++)
-    // {
-    //   if(orders[i].rest==myarray[0])
-    //   {
-    //     for(j=0;j<orders[i].meals.length;j++)
-    //     {
-    //       if(orders[i].meals[j]._id==myarray[1])
-    //       {
-    //         i1=i
-    //         j1=j
-    //         break;
-    //       }
-    //     }
-    //     // console.log(orders[i].rest)
-    //   }
-    // }
-    // console.log(orders[i1].meals[j1])
     let k
     let finalPrice=0
     for(k=0;k<menu.length;k++){
       finalPrice+=menu[k].price*menu[k].quantity
     }
-
+    var tax=finalPrice*.08
+    var pfprice=finalPrice+tax
+    tax.toFixed(2)
+    pfprice.toFixed(2)
     res.status(200).render('user_order_detail',{
       title:"Details Page",
       data:menu,
-      finalPrice:finalPrice
+      finalPrice:finalPrice,
+      tax:tax,
+      pfprice:pfprice
       // data:ans.menu,
       // restId:ans._id
     })
   })
+
+  exports.getOrderDetailsRest=catchAsync(async(req,res) => {
+
+    const data=await OrderHistoryRest.findOne({rest:req.rest})
+    const id=req.params.id
+    const myarray=id.split("-");
+    let i
+    const orders=data.orders
+    for(i=0;i<orders.length;i++) {
+      if(orders[i]._id==myarray[0]) {
+        break;
+      }
+    }
+    // console.log(i)
+    // console.log(orders[i].meals)
+    const menu=orders[i].meals
+    let k
+    let finalPrice=0
+    for(k=0;k<menu.length;k++){
+      finalPrice+=menu[k].price*menu[k].quantity
+    }
+    // console.log(menu)
+    // console.log(finalPrice)
+    var tax=finalPrice*.08
+    var pfprice=finalPrice+tax
+    tax.toFixed(2)
+    pfprice.toFixed(2)
+
+    res.status(200).render('user_order_detail',{
+      title:"Details Page",
+      data:menu,
+      finalPrice:finalPrice,
+      tax:tax,
+      pfprice:pfprice
+      // data:ans.menu,
+      // restId:ans._id
+    })
+  })
+
+  
+
+
 
   

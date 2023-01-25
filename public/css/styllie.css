@@ -4,14 +4,24 @@ body{
     box-sizing: border-box;
 }
 
+
+
 .main{
     width: 100%;
-    background: rgba(0,0,0,0.4);
+    background: rgb(255, 255, 255);
     height: 82vh;
     padding: 0;
     display: flex;
     justify-items: center;
     align-items: center;
+    background-image: url('HomePage.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: 9rem;
+
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
 }
 
 .wrapper-over{

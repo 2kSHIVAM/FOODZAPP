@@ -14,10 +14,10 @@ export const updateSettings = async(data,type)=>{
 
         if(result.data.status==='success'){
             // alert('Logged in successfully');
-            showAlert('success',`${type.toUpperCase()} updated successfully`);
-            // window.setTimeout(()=>{
-            //     location.assign('/');
-            // },1500);
+            showAlert('success','Data updated successfully');
+            window.setTimeout(()=>{
+                location.assign('/me-user');
+            },1500);
         }
 
 
