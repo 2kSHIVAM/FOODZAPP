@@ -11,12 +11,14 @@ body{
 }
 
 .food-area {
-    background-color: #f4f4f4;
-    padding: 100px 0;
+  background-color: #f4f4f4;
+  padding: 30px 0;
   }
   .container {
-    width: 1170px;
-    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
   }
   .title {
     text-align: center;
@@ -33,15 +35,14 @@ body{
 }
 
 .foods {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 30px 30px;
   }
   .single-food {
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 12px;
-    margin-bottom: 30px;
+    border-radius: 15px;
     overflow: hidden;
     flex-basis: 31%;
   }
@@ -54,6 +55,7 @@ body{
   .food-img img {
     border-radius: 12px 12px 0 0;
     transition: .3s;
+    height: 100%;
   }
   .food-img h4 {
     position: absolute;
@@ -75,17 +77,20 @@ body{
 }
 
 .food-list {
-    padding: 20px;
-    list-style: none;
+  padding: 0px 15px;
+  list-style: none;
   }
   .food-list li {
     font-weight: 400;
     font-size: 18px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     border-bottom: 1px dashed #ddd;
     padding-bottom: 10px;
+    gap: 30px;
     margin-bottom: 10px;
+    flex-direction: row;
+    align-items: center;
   }
   .food-list li:last-child {
     border-bottom: 0;

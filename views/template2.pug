@@ -10,17 +10,18 @@ block content
             .foods
                 each item in data.menu
                     each meal in item.meals
-                        .single-food
+                        .single-food(style="display: flex;flex-direction: column;justify-content: space-between;align-items: center;height: 400px;width: 300px;box-shadow: 10px 10px 25px rgb(0 0 0 / 40%);")
                             .food-img
                                 img#photo(src=`${meal.meal_photo}`, alt='' )
                                 h4= `${item.menu_heading}`
-                            ul.food-list
-                                li#name= `${meal.meal_name}`
-                                    span#price= `${meal.price}`
+                            .food-details(style="display: flex;flex-direction: column;align-items: center;gap: 30px;margin-bottom: 30px;")
+                                ul.food-list
+                                    li#name= `${meal.meal_name}`
+                                        span#price= `${meal.price}`
 
-                                //- .wrapper
-                                //-     span.minus -
-                                //-     span.num#quantity 01
-                                //-     span.plus +
-                            .form__group
-                                button.btn.btn--green#addCarty(data-food-id=`${meal._id},${item._id},${data._id},${user._id}`) Add to cart
+                                    //- .wrapper
+                                    //-     span.minus -
+                                    //-     span.num#quantity 01
+                                    //-     span.plus +
+                                .form__group
+                                    button.btn.btn--green#addCarty(data-food-id=`${meal._id},${item._id},${data._id},${user._id}`) Add to cart

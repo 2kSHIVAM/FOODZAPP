@@ -39,8 +39,8 @@ block content
                                     .widget-49
                                         .widget-49-title-wrapper
                                             .widget-49-date-primary
-                                                span.widget-49-date-day 03
-                                                span.widget-49-date-month dec
+                                                span.widget-49-date-day 09
+                                                span.widget-49-date-month apr
                                             .widget-49-meeting-info
                                                 span.widget-49-pro-title= `TOKEN: ${result[id]._id}`
                                                 span.widget-49-meeting-time 12:00 to 13.30 Hrs
@@ -54,4 +54,4 @@ block content
                                                 img.img-tick(src="https://tse3.mm.bing.net/th?id=OIP.GxSdgZx4VkM4ZHcxx6JwrwHaGb&pid=Api&P=0")
                                             - else 
                                                 input.btn.btn-primary#addTick(type='button' value='Delivered ?' data-food-id=`${result[id]._id},${restId}` style="margin-top: 0;height: 52px;width: 131px;border-radius: 28px;background: #ff4802;color: white;font-size: 1.5rem;")
-                                            a.btn.btn--green.btn--small(href=`/my-orders-details-rest/${result[id]._id}-${restId}`) Details
+                                            a.btn.btn-sm.btn-flash-border-primary(href='#' style="background-color: #ff4802;color: white;height: 52px;width: 131px;font-size: 1.5rem;") View All
